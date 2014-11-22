@@ -1,9 +1,10 @@
 Package.describe({
-  summary: "Spotify for Meteor"
-});
+  description: 'Spotify for Meteor'
+})
 
-Package.on_use(function (api) {
-	api.add_files("spotify.js", "client");
+Package.on_use(function(api) {
+  api.use(['underscore', 'reactive-var', 'deps'], 'client')
+  api.add_files(['spotify.js', 'init.js'], 'client')
 
-	api.export("SpotifyWebApi", "client")
+  api.export(['SpotifyWebApi', 'Spotify'], 'client')
 })
