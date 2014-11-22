@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="animate.css">
   <!-- Latest compiled and minified CSS -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -42,7 +43,18 @@
  	</div>
 	
  </div>
+  
+	  <script>
+	        $(document).ready(function (){
+	            $(".analyze-button").click(function (){
+	                    $('html, body').animate({
+	                        scrollTop: $(".results-container").offset().top
+	                    }, 500);
+	            });
+	        });
+	  </script>
 </body>
+
 
 <template name="home">
 

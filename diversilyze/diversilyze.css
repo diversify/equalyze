@@ -16,23 +16,15 @@
   font-style: normal;
 }
 
-
-
-
-/* CSS declarations go here */
-
 body,html {
 	margin:0;
 	padding:0;
 	background: #F7F7F7;
 	-webkit-font-smoothing:antialiased;
 	height:100%;
-	overflow: hidden; /* Fix for horizontal scroll */ 
-
-
+	/* overflow-x: hidden; Fix for horizontal scroll */ 
 }
 
-/* centered columns styles */
 .col-centered {
 	float:none !important;
 	margin: 0 auto;
@@ -88,7 +80,7 @@ body,html {
 .album-cover-container {
 	width:80%;
 	position: absolute;
-	bottom: 0;
+	bottom: -4.5px;
 	min-width:1500px;
 
 }
@@ -119,32 +111,24 @@ body,html {
 	box-shadow:         2px -2px 8px 0px rgba(0,0,0,0.59);
 }
 
-
 .results-container {
 	height:100%;
 	text-align: center;
 }
 
-
 .result-profile {
 	padding:50px 30px;
 }
 
-
 .result-chart {
-	height:160px;
-	width:160px;
+	height:190px;
+	width:190px;
 	border-radius: 50%;
 	margin:0 auto;
 	background:#3a3a3a;
 	-webkit-animation: bounce 1000ms linear both;
     animation: bounce 1000ms linear both;
 }
-
-/* Generated with Bounce.js. Edit at http://goo.gl/9th3rg */
-
-
-/* Generated with Bounce.js. Edit at http://goo.gl/3Eysna */
 
 @-webkit-keyframes bounce { 
   0% { -webkit-transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
@@ -213,9 +197,6 @@ body,html {
   96.666667% { -webkit-transform: matrix3d(0.99941, 0, 0, 0, 0, 0.99941, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(0.99941, 0, 0, 0, 0, 0.99941, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
 }
-
-
-
 
 
 .result-msg-title {
