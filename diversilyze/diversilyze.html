@@ -3,9 +3,22 @@
 </head>
 
 <body>
-
+{{>home}}
 </body>
 
 <template name="home">
   <h1>Welcome to Equalyzer</h1>
+
+  <a href="#" id="login">Login</a>
+  {{#each users}}
+  	{{>userItem}}
+  {{/each}}
+</template>
+
+<template name="analyze">
+	<input type="button" class="button" value="Analyze">
+</template>
+
+<template name="userItem">
+<li class="song-name"></li>
 </template>

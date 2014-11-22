@@ -8,4 +8,6 @@ autopublish
 insecure
 iron:router
 bootstrap
-
+spotify
+accounts-base
+accounts-password

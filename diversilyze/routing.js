@@ -1,3 +1,3 @@
-Router.route('/', function() {
-	this.render('home');
-});
+Router.route('/analyze', function() {
+	this.render('analyze');
+})
