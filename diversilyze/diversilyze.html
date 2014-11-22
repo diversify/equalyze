@@ -1,28 +1,44 @@
 <head>
   <title>Equalyzer</title>
   <link rel="stylesheet" href="diversilyze.css">
+  <link rel="stylesheet" href="animate.css">
   <!-- Latest compiled and minified CSS -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
 <!-- {{>home}} -->
- <div class="landing-container">
+<div class="landing-container">
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
- 		<div class="logo-container">
- 			<img src="/logo.png" alt="">
+ 		<div class="logo-container animated ">
+ 			<img src="/Logo.png" alt="">
  		</div>
  		<p class="analyze-desc">
  			How gender equal are your playlist? Analyze your playlists now!
  		</p>
  		<div class="analyze-button">let's analyze</div>
  	</div>
- 	<div class="album-cover-container">
- 		<div class="album-cover" id="album-1"></div>
- 		<div class="album-cover" id="album-1"></div>
- 		<div class="album-cover" id="album-1"></div>
- 		<div class="album-cover" id="album-1"></div>
- 		<div class="album-cover" id="album-1"></div>
+	<div class="album-cover-container">
+		<div class="album-cover-large" id="album-1">
+		</div><div class="album-cover-small" id="album-1">
+	  	</div><div class="album-cover-large" id="album-2">
+	  	</div><div class="album-cover-small" id="album-3">
+	  	</div><div class="album-cover-large" id="album-4">
+		</div><div class="album-cover-small" id="album-5">
+		</div><div class="album-cover-large" id="album-6">
+		</div><div class="album-cover-small" id="album-7">
+		</div><div class="album-cover-large" id="album-8">
+		</div><div class="album-cover-small" id="album-9">
+		</div><div class="album-cover-large" id="album-10">
+		</div><div class="album-cover-small" id="album-11">
+		</div>
+	</div>
+ </div>
+ <div class="results-container">
+ 	<div class="result-profile col-xs-9 col-centered">
+ 	<div class="result-chart"></div>
+ 	<h2 class="result-msg-title">Oh no!</h2>
+ 	<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
  	</div>
  </div>
 </body>
