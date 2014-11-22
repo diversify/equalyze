@@ -4,6 +4,9 @@ body {
 	margin:0;
 	padding:0;
 	background: #F7F7F7;
+	-webkit-font-smoothing:antialiased;
+	height:100%;
+
 }
 
 /* centered columns styles */
@@ -14,8 +17,26 @@ body {
 
 .landing-container {
 	background: #F7F7F7;
+	height:100%;
 }
 
+.landing-content-container {
+	padding:20px;
+}
+
+.analyze-desc {
+	font-family: Gotham-Book;
+	font-size: 24px;
+	color: #030303;
+	line-height: 38px;
+	text-align: center;
+/* How gender equal are: */
+}
+
+.logo-container {
+	text-align: center;
+	margin:40px 0px 40px 0px;
+}
 
 .analyze-button {
 		/* Rectangle 4: */
@@ -28,11 +49,22 @@ body {
 	text-align: center;
 	color: #FFFFFF;
 	line-height: 47px;
-	width:80%;
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	cursor: pointer;
 	-webkit-transition: background 1s ease-out; 
 	margin:0 auto;
+	max-width:400px;
+	margin-top:50px;
 }
 
+.album-cover-container {
+	position: absolute;
+	bottom:0;
+}
+
+.album-cover {
+	height:70px;
+	width:70px;
+	background: red;
+}
