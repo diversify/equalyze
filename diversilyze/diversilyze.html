@@ -1,0 +1,44 @@
+<head>
+  <title>Equalyzer</title>
+  <link rel="stylesheet" href="diversilyze.css">
+  <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<!-- {{>home}} -->
+ <div class="landing-container">
+ 	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
+ 		<div class="logo-container">
+ 			<img src="/logo.png" alt="">
+ 		</div>
+ 		<p class="analyze-desc">
+ 			How gender equal are your playlist? Analyze your playlists now!
+ 		</p>
+ 		<div class="analyze-button">let's analyze</div>
+ 	</div>
+ 	<div class="album-cover-container">
+ 		<div class="album-cover" id="album-1"></div>
+ 		<div class="album-cover" id="album-1"></div>
+ 		<div class="album-cover" id="album-1"></div>
+ 		<div class="album-cover" id="album-1"></div>
+ 		<div class="album-cover" id="album-1"></div>
+ 	</div>
+ </div>
+</body>
+
+<template name="home">
+
+  <a href="#" id="login">Login</a>
+  {{#each users}}
+  	{{>userItem}}
+  {{/each}} 
+</template>
+
+<template name="analyze">
+	<input type="button" class="button" value="Analyze">
+</template>
+
+<template name="userItem">
+<li class="song-name"></li>
+</template>

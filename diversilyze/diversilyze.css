@@ -1,0 +1,83 @@
+
+/* FONTS */
+
+@font-face {
+  font-family: 'Gotham-Book';
+  src: url('Gotham-Book.eot?#iefix') format('embedded-opentype'),  url('Gotham-Book.otf')  format('opentype'),
+	     url('Gotham-Book.woff') format('woff'), url('Gotham-Book.ttf')  format('truetype'), url('Gotham-Book.svg#Gotham-Book') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+/* CSS declarations go here */
+
+body {
+	margin:0;
+	padding:0;
+	background: #F7F7F7;
+	-webkit-font-smoothing:antialiased;
+	height:100%;
+
+}
+
+/* centered columns styles */
+.col-centered {
+	float: none;
+	margin: 0 auto;
+}
+
+.landing-container {
+	background: #F7F7F7;
+	height:100%;
+}
+
+.landing-content-container {
+	padding:20px;
+}
+
+.analyze-desc {
+	font-family: Gotham-Book;
+	font-size: 24px;
+	color: #030303;
+	line-height: 38px;
+	text-align: center;
+/* How gender equal are: */
+}
+
+.logo-container {
+	text-align: center;
+	margin:40px 0px 40px 0px;
+}
+
+.analyze-button {
+		/* Rectangle 4: */
+	background: -webkit-linear-gradient(254deg, #F13465 0%, #FF3500 100%);
+	background: -o-linear-gradient(254deg, #F13465 0%, #FF3500 100%);
+	background: linear-gradient(344deg, #F13465 0%, #FF3500 100%);
+	font-family: Gotham-Medium;
+	font-size: 24px;
+	padding:10px 20px;
+	text-align: center;
+	color: #FFFFFF;
+	line-height: 47px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	cursor: pointer;
+	-webkit-transition: background 1s ease-out; 
+	margin:0 auto;
+	max-width:400px;
+	margin-top:50px;
+}
+
+.album-cover-container {
+	position: absolute;
+	bottom:0;
+}
+
+.album-cover {
+	height:70px;
+	width:70px;
+	background: red;
+}
