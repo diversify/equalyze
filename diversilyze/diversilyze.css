@@ -3,11 +3,20 @@
 
 @font-face {
   font-family: 'Gotham-Book';
-  src: url('Gotham-Book.eot?#iefix') format('embedded-opentype'),  url('Gotham-Book.otf')  format('opentype'),
-	     url('Gotham-Book.woff') format('woff'), url('Gotham-Book.ttf')  format('truetype'), url('Gotham-Book.svg#Gotham-Book') format('svg');
+  src: url('fonts/Gotham-Book.eot?#iefix') format('embedded-opentype'),  url('Gotham-Book.otf')  format('opentype'),
+	     url('fonts/Gotham-Book.woff') format('woff'), url('Gotham-Book.ttf')  format('truetype'), url('Gotham-Book.svg#Gotham-Book') format('svg');
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'GothamRounded-Medium';
+  src: url('fonts/GothamRounded-Medium.eot?#iefix') format('embedded-opentype'),  url('GothamRounded-Medium.otf')  format('opentype'),
+	     url('fonts/GothamRounded-Medium.woff') format('woff'), url('GothamRounded-Medium.ttf')  format('truetype'), url('GothamRounded-Medium.svg#GothamRounded-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 
 
