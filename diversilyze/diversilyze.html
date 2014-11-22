@@ -1,18 +1,26 @@
 <head>
   <title>Equalyzer</title>
+  <link rel="stylesheet" href="diversilyze.css">
 </head>
 
 <body>
-{{>home}}
+<!-- {{>home}} -->
+ <div class="landing-container">
+ 	<div class="col-xs-8 landing-content-container">
+ 		<div class="logo-container">
+ 			<img src="../assets/logo.png" alt="">
+ 		</div>
+ 		<div class="analyze-button">let's analyze</div>
+ 	</div>
+ </div>
 </body>
 
 <template name="home">
-  <h1>Welcome to Equalyzer</h1>
 
   <a href="#" id="login">Login</a>
   {{#each users}}
   	{{>userItem}}
-  {{/each}}
+  {{/each}} 
 </template>
 
 <template name="analyze">

@@ -1,1 +1,38 @@
 /* CSS declarations go here */
+
+body {
+	margin:0;
+	padding:0;
+	background: #F7F7F7;
+}
+
+/* centered columns styles */
+.col-centered {
+	float: none;
+	margin: 0 auto;
+}
+
+.landing-container {
+	background: #F7F7F7;
+}
+
+
+.analyze-button {
+		/* Rectangle 4: */
+	background: -webkit-linear-gradient(254deg, #F13465 0%, #FF3500 100%);
+	background: -o-linear-gradient(254deg, #F13465 0%, #FF3500 100%);
+	background: linear-gradient(344deg, #F13465 0%, #FF3500 100%);
+	font-family: Gotham-Medium;
+	font-size: 24px;
+	padding:10px 20px;
+	text-align: center;
+	color: #FFFFFF;
+	line-height: 47px;
+	width:80%;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	cursor: pointer;
+	-webkit-transition: background 1s ease-out; 
+	margin:0 auto;
+}
+
