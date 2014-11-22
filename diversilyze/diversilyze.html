@@ -11,7 +11,7 @@
 <div class="landing-container">
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
  		<div class="logo-container animated ">
- 			<img src="/Logo.png" alt="">
+ 			<img src="/logo.png" alt="">
  		</div>
  		<p class="analyze-desc">
  			How gender equal are your playlist? Analyze your playlists now!
@@ -34,9 +34,42 @@
 		</div>
 	</div>
  </div>
+
+
+
+
  <div class="results-container">
  	<div class="result-profile col-xs-9 col-centered">
- 	<div class="result-chart"></div>
+		<div class="result-chart">
+			<div id="canvas-holder">
+				<canvas id="chart-area" width="300" height="300" >
+
+				</canvas>
+			</div>
+		</div>
+
+	<script>
+		var pieData = [
+					{
+					value: 75,
+					color:"#F13465",
+					highlight: "#FF5A5E",
+					label: "Men"
+				},
+				{
+					value: 25,
+					color: "#FF3500",
+					highlight: "#5AD3D1",
+					label: "Women"
+				}
+			];
+			window.onload = function(){
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieData);
+			};
+	</script>
+
+
  	<h2 class="result-msg-title">Oh no!</h2>
  	<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
  	</div>
