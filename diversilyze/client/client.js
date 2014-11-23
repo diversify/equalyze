@@ -155,28 +155,35 @@ Template.analyze.events({
     })
     promise.then(function(diversity) {
 
-       
-      var pieData = [
-      {
-        value: Math.round(diversity*100),
-        segmentShowStroke : false,
-        segmentStrokeWidth : 0,
-        color:"#F2345A",
-        animationEasing : "easeOutBounce",
-        label: "Men"
-      },
-      {
-        value: Math.round((1-diversity)*100),
-        segmentShowStroke : false,
-        highlight: "#5AD3D1",
-        color:"#FF3500",
-        label: "Women"
-      }
-      ];
+      var promiseTwo = Spotify.getUser(userID).then(function(user) {
+        return user;
+      })
+      promiseTwo.then(function(spotifyUser) {
+        console.log(spotifyUser.images[0].url)
+        $('.result-chart').css('background-image', 'url(' + spotifyUser.images[0].url + ')');
+        var pieData = [
+        {
+          value: Math.round(diversity*100),
+          segmentShowStroke : false,
+          segmentStrokeWidth : 0,
+          color:"#F2345A",
+          animationEasing : "easeOutBounce",
+          label: "Men"
+        },
+        {
+          value: Math.round((1-diversity)*100),
+          segmentShowStroke : false,
+          highlight: "#5AD3D1",
+          color:"#FF3500",
+          label: "Women"
+        }
+        ];
 
-      var ctx = document.getElementById("chart-area").getContext("2d");
-      var myPie = new Chart(ctx).Pie(pieData);
-      console.log(myPie)
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        var myPie = new Chart(ctx).Pie(pieData);
+
+      })
+      
     })
   }
 })
