@@ -26,7 +26,7 @@ var data = {
   show_dialog: true
 }
 
-var playlistNbr = 14;
+var playlistNbr = 4;
 
 Router.onBeforeAction(function() {
   if(!AuthInformation.isAuthed()) {
@@ -202,14 +202,13 @@ Template.analyze.events({
           segmentShowStroke : false,
           segmentStrokeWidth : 0,
           color:"#F2345A",
-          label: "Men"
+          label: "Diversity"
         },
         {
           value: Math.round((1-diversity)*100),
           segmentShowStroke : false,
-          highlight: "#5AD3D1",
-          color:"#FF3500",
-          label: "Women"
+          color:"transparent",
+          
         }
         ];
 
