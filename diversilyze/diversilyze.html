@@ -66,6 +66,7 @@
 		</div>
 
 		<script>
+		
 			var pieData = [
 					{
 					value: {{diversity.diversity}},
@@ -84,6 +85,7 @@
 				}
 			];
 			window.onload = function(){
+				console.log("haudhsudh")
 				var ctx = document.getElementById("chart-area").getContext("2d");
 				window.myPie = new Chart(ctx).Pie(pieData);
 			};
@@ -109,7 +111,11 @@
 	                    }, 500);
 	            });
 	        });
+
 	  </script></template>
+
+
+
 
 <template name="userItem">
 <li class="song-name"></li>
