@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+
+
+<script type="text/javascript">__meteor_runtime_config__ = {"meteorRelease":"METEOR@1.0","ROOT_URL":"http://localhost:3000/","ROOT_URL_PATH_PREFIX":"","appId":"gzzquistsrnd13fzlku","autoupdateVersion":"eb0b0edf84959574cb983f51cf9b184834689bfe","autoupdateVersionRefreshable":"95eee7ba8b93766d1fda7eb7eb0b1bff2b437782","autoupdateVersionCordova":"none"};</script>
+
+  <script type="text/javascript" src="./Equalyzer_files/underscore.js"></script><style type="text/css"></style>
+  <script type="text/javascript" src="./Equalyzer_files/meteor.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/json.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/base64.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/ejson.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/logging.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/reload.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/tracker.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/random.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/retry.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/check.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/id-map.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/ordered-dict.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/geojson-utils.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/minimongo.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/ddp.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/follower-livedata.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/application-configuration.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/insecure.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/mongo.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/autoupdate.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/meteor-platform.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/autopublish.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/deps.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/jquery.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/htmljs.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/observe-sequence.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/reactive-var.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/blaze.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/ui.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/templating.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_core.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_dynamic-template.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_layout.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_url.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_middleware-stack.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_location.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/reactive-dict.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_controller.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/iron_router.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/spotify.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/localstorage.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/accounts-base.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/sha.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/srp.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/accounts-password.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/bootstrap.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/webapp.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/session.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/livedata.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/spacebars.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/launch-screen.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/global-imports.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/template.diversilyze.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/template.index.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/_helpers.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/chart.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/client.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/collections.js"></script>
+  <script type="text/javascript" src="./Equalyzer_files/service-configuration.js"></script>
+
+
+
+<title>Equalyzer</title>
+  <link rel="stylesheet" href="http://localhost:3000/diversilyze.css">
+  <link rel="stylesheet" href="http://localhost:3000/animate.css">
+  <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="./Equalyzer_files/jquery.min.js"></script>
+<title>meteor-spotify</title>
+<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}</style><link rel="stylesheet" type="text/css" class="__meteor-css__" href="./Equalyzer_files/890e83875cd44f7db12af44f5999cd3a4c1cc792.css"></head>
+<body data-pinterest-extension-installed="cr1.35" cz-shortcut-listen="true">
+
+
+
+<!-- {{>home}} -->
+<div class="landing-container">
+
+ 	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
+ 		<div class="logo-container animated ">
+ 			<img src="./Equalyzer_files/Logo.png" alt="">
+
+ 		</div>
+ 		<p class="analyze-desc">
+ 			How gender equal are your playlist? Analyze your playlists now!
+ 		</p>
+ 		<div class="analyze-button animated flipInX">let's analyze</div>
+ 	</div>
+ 	<div class="bottom-container-fix">
+	<div class="album-cover-container">
+		<div class="album-cover-large" id="album-1">
+		</div><div class="album-cover-small" id="album-1">
+	  	</div><div class="album-cover-large" id="album-2">
+	  	</div><div class="album-cover-small" id="album-3">
+	  	</div><div class="album-cover-large" id="album-4">
+		</div><div class="album-cover-small" id="album-5">
+		</div><div class="album-cover-large" id="album-6">
+		</div><div class="album-cover-small" id="album-7">
+		</div><div class="album-cover-large" id="album-8">
+		</div><div class="album-cover-small" id="album-9">
+		</div><div class="album-cover-large" id="album-10">
+		</div><div class="album-cover-small" id="album-11">
+		</div>
+	</div>
+	</div>
+ </div>
+
+
+
+
+ <div class="results-container">
+
+ 	<div class="result-profile col-xs-9 col-centered">
+		<div class="result-chart">
+			<div id="canvas-holder">
+				<canvas id="chart-area" width="220" height="220" style="width: 220px; height: 220px;">
+
+				</canvas>
+			</div>
+		</div>
+
+		<script>
+			var pieData = [
+					{
+					value: 75,
+					segmentShowStroke : false,
+					segmentStrokeWidth : 0,
+					color:"#F2345A",
+					animationEasing : "easeOutBounce",
+					label: "Men"
+				},
+				{
+					value: 25,
+					segmentShowStroke : false,
+					highlight: "#5AD3D1",
+					label: "Women"
+				}
+			];
+			window.onload = function(){
+				var ctx = document.getElementById("chart-area").getContext("2d");
+				window.myPie = new Chart(ctx).Pie(pieData);
+			};
+		</script>
+
+
+ 	<h2 class="result-msg-title">Oh no!</h2>
+ 	<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
+
+	
+ 	</div>
+
+ 	<div class="album-recommendation col-xs-10 col-centered">
+ 			<h4 class="recommend-title">Check these albums out:</h4>
+ 			<div class="album-cover-recommend" id="recommend-1"></div>
+ 			<div class="album-cover-recommend" id="recommend-2"></div>
+ 
+ 	</div>
+ </div>
+  
+	  <script>
+	        $(document).ready(function (){
+	            $(".analyze-button").click(function (){
+	                    $('html, body').animate({
+	                        scrollTop: $(".results-container").offset().top
+	                    }, 500);
+	            });
+	        });
+	  </script><input type="button" class="button" value="Analyze"></body></html>
