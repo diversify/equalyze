@@ -154,6 +154,8 @@ Template.analyze.events({
       return returnTwo;
     })
     promise.then(function(diversity) {
+
+       
       var pieData = [
       {
         value: Math.round(diversity*100),
