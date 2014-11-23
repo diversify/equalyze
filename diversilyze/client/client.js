@@ -26,7 +26,8 @@ var data = {
   show_dialog: true
 }
 
-var playlistNbr = 14;
+var playlistNbr = 13;
+
 
 Router.onBeforeAction(function() {
   if(!AuthInformation.isAuthed()) {
@@ -76,52 +77,10 @@ Template.analyze.helpers({
     return GenresData.find();
   },
 
-  relatedStuff: function() {
-    var playlistID = Session.get('currentPlaylist')
-    var relatedArtists = RelatedArtistData.find({playlistID: playlistID}).fetch();
-    var genres = GenresData.find({playlistID: playlistID}).fetch();
-    var genresData = [];
-    var artistData = [];
-    var addIt = true;
-    var n = 0
-    var stop = false;
-    genres.forEach(function(genreObj){
-      genresData.push(genreObj.genre);
-    })
-
-    relatedArtists.forEach(function(artist) {
-      if(!stop) {
-        artist.genres.forEach(function(genre) {
-          var check = $.inArray(genre, genresData);
-          if(check >= 0) {
-            addIt = false;
-          }
-        })
-        if(addIt) {
-          console.log(n)
-          n++;
-          if(n<30) {
-            var promises = Spotify.getArtist(artist.id).then(function(artistObj) {
-              UniqueRelatedArtists.insert({playlistID: playlistID, artist: artistObj})
-              console.log('asd')
-              artistData.push(artistObj)
-            })
-          } else {
-            stop = true
-          }
-        }
-        addIt = true;
-      }
-    })
-  },
-
-  relatedArtists: function() {
-    var playlistID =  Session.get('currentPlaylist');
-    return UniqueRelatedArtists.find({playlistID: playlistID});
-  },
-
   setAlbumCovers: function() {   
     var userID = Session.get('currentUser').userID;
+    console.log(userID)
+    console.log(playlistNbr)
     var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
       return playlists.items[playlistNbr].id;
     });
@@ -149,7 +108,6 @@ Template.analyze.helpers({
 
 Template.login.events({
   'click #login': function() {
-
     if(!AuthInformation.isAuthed()) {
       window.location = auth_url + Helpers.toQueryString(data)
     }
@@ -168,12 +126,6 @@ Template.analyze.helpers({
   
 })
 
-/*Template.diversityItem.helpers({
-  fixDiversity: function(diversityRate) {
-    return Math.round(diversityRate * 100);
-  }
-})*/
-
 Template.analyze.events({
   'click #analyze': function() {
     var userID = Session.get('currentUser').userID;
@@ -189,12 +141,11 @@ Template.analyze.events({
       $(".album-cover-small").addClass("fadeOutUp");
       $(".album-cover-large").addClass("fadeOutUp");
     promise.then(function(diversity) {
-
       var promiseTwo = Spotify.getUser(userID).then(function(user) {
         return user;
       })
       promiseTwo.then(function(spotifyUser) {
-        console.log(spotifyUser.images[0].url)
+        console.log("Doing chart")
         $('.result-chart').css('background-image', 'url(' + spotifyUser.images[0].url + ')');
         var pieData = [
         {
@@ -202,14 +153,13 @@ Template.analyze.events({
           segmentShowStroke : false,
           segmentStrokeWidth : 0,
           color:"#F2345A",
-          label: "Men"
+          label: "Diversity"
         },
         {
           value: Math.round((1-diversity)*100),
           segmentShowStroke : false,
-          highlight: "#5AD3D1",
-          color:"#FF3500",
-          label: "Women"
+          color:"transparent",
+          
         }
         ];
 
