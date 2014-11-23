@@ -46,7 +46,7 @@
  	<div class="result-profile col-xs-9 col-centered">
 		<div class="result-chart">
 			<div id="canvas-holder">
-				<canvas id="chart-area" width="300" height="300" >
+				<canvas id="chart-area" width="220" height="220" >
 
 				</canvas>
 			</div>
@@ -56,13 +56,15 @@
 			var pieData = [
 					{
 					value: 75,
-					color:"#F13465",
-					highlight: "#FF5A5E",
+					segmentShowStroke : false,
+					segmentStrokeWidth : 0,
+					color:"#F2345A",
+					animationEasing : "easeOutBounce",
 					label: "Men"
 				},
 				{
 					value: 25,
-					color: "#FF3500",
+					segmentShowStroke : false,
 					highlight: "#5AD3D1",
 					label: "Women"
 				}
