@@ -28,6 +28,7 @@ var data = {
 
 var playlistNbr = 13;
 
+
 Router.onBeforeAction(function() {
   if(!AuthInformation.isAuthed()) {
     this.render('login')
@@ -152,14 +153,13 @@ Template.analyze.events({
           segmentShowStroke : false,
           segmentStrokeWidth : 0,
           color:"#F2345A",
-          label: "Men"
+          label: "Diversity"
         },
         {
           value: Math.round((1-diversity)*100),
           segmentShowStroke : false,
-          highlight: "#5AD3D1",
-          color:"#FF3500",
-          label: "Women"
+          color:"transparent",
+          
         }
         ];
 
