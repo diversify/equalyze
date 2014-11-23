@@ -32,7 +32,7 @@ body,html {
 	background: #F7F7F7;
 	-webkit-font-smoothing:antialiased;
 	height:100%;
-	font-family:'Gotham-Book', Helvetica, Arial, sans-serif;
+	font-family:'Gotham-Book', sans-serif;
 }
 
 h1, h2, h3, .analyze-button {
@@ -57,7 +57,6 @@ h1, h2, h3, .analyze-button {
 }
 
 .analyze-desc {
-	font-family: 'Gotham-Book';
 	font-size: 20px;
 	color: #030303;
 	line-height: 30px;
@@ -246,9 +245,9 @@ h1, h2, h3, .analyze-button {
 	margin-top:15px;
 }
 
-
 .result-msg {
 	font-size:1.2em;
+	font-family:'Gotham-Book', sans-serif;
 }
 
 .album-recommendation {
