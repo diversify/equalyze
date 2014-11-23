@@ -1,5 +1,5 @@
 <head>
-	<title>Equalyzer</title>
+	<title>Equalyze</title>
 	<link rel="stylesheet" href="diversilyze.css">
 	<link rel="stylesheet" href="animate.css">
 	<!-- Latest compiled and minified CSS -->
@@ -9,11 +9,20 @@
 </head>
 
 <body>
+	
 	<!-- {{>home}} -->
 
 
 </body>
 
+<template name="header">
+	<a href="/about" class="menu-item" title="About">About</a>
+	<a href="/">
+		<div class="logo-container animated">
+			<img src="/logo.png" alt="">
+		</div>
+	</a>
+</template>
 
 <template name="home">
 	<a href="#" id="login">Login</a>
@@ -23,12 +32,11 @@
 </template>
 
 <template name="analyze">
-	<div class="landing-container">
 
+	<div class="landing-container">
+		{{>header}}
 		<div class="col-xs-11 col-md-6 landing-content-container col-centered">
-			<div class="logo-container animated ">
-				<img src="/logo.png" alt="">
-			</div>
+			
 			<p class="analyze-desc">
 				How gender equal are your playlist? Analyze your playlists now!
 			</p>
@@ -105,10 +113,8 @@ $(document).ready(function (){
 </template>
 
 <template name="about">
+	{{>header}}
 	<div class="col-xs-11 col-md-6 landing-content-container col-centered about">
-		<div class="logo-container animated ">
-			<img src="/logo.png" alt="">
-		</div>
 		<h3 class="about">Why?</h3>
 		<p class="analyze-desc about">
 			Black on white: women are underrepresented in most areas in society. The music industry is not an exception. According to a research by the organization Jämställd Festival (Equal festival), 73% of the Swedish festival acts are of male gender. In Europe, the numbers are even more unequal: 91% of the artists are men.</p>
@@ -121,7 +127,7 @@ $(document).ready(function (){
 
 
 						<h3 class="about">How?</h3>
-						<p class="analyze-desc about">We want to create awareness of how unequal the music industry is today by putting it black on white how the gender balance looks in your and your friends’ playlists.</p>
+						<p class="analyze-desc about">We want to create awareness of how unequal the music industry is today by visualizing how the gender balance looks in your and your friends’ playlists.</p>
 						<p class="analyze-desc about">
 							Moreover, as festivals often create playlists of their lineups, we have the opportunity to put pressure on those to reach an equal gender balance. Having an equal lineup and being able to share this on social media is a great selling argument for festivals.</p>
 
@@ -136,10 +142,3 @@ $(document).ready(function (){
 
 								</div>
 							</template>
-
-						<template name="login">
-							<div class="container-login col-xs-10">
-								<h1>Log in with Spotify</h1>
-								<button id="login" class="analyze-button">Log in</button>
-							</div>
-						</template>

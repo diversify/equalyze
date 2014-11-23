@@ -45,7 +45,7 @@ p {
 	font-family:'Gotham-Book', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
+h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about, .menu-item {
 
  font-family: 'Gotham-Bold';
  font-weight: 700;
@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 
 .logo-container {
 	text-align: center;
-	margin:25px 0px 25px 0px;
+	margin:75px 0px 25px 0px;
 }
 
 .analyze-button {
@@ -289,13 +289,27 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 
 /* Log in style */ 
 
+/* MENU */
 
+.menu-item {
+	color:inherit;
+	text-align:right;
+	padding:20px;
+	font-size:18px;
+	position:absolute;
+	top:30px;
+	right:30px;
+}
+.menu-item:hover {
+	text-decoration:none;
+	color:inherit;
+}
 
 /* ABOUT PAGE */
 
 p.about {
 	text-align:left;
-	font-size:1.6rem;
+	font-size:16px;
 	margin-bottom:17px;
 }
 
@@ -306,5 +320,5 @@ h3.about {
 	margin-bottom:8px;
 }
 div.about {
-	margin-bottom:100px;
+	margin:80px auto 100px;
 }
