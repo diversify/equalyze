@@ -45,6 +45,10 @@ Router.route('/', function() {
   this.render('analyze')
 })
 
+Router.route('/about',function(){
+  this.render('about')
+})
+
 Router.route('/callback', function() {
   console.log('callback');
   var hash = this.params.hash;
