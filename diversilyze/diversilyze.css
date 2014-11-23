@@ -23,7 +23,6 @@ body,html {
 	-webkit-font-smoothing:antialiased;
 	height:100%;
 	/* overflow-x: hidden; Fix for horizontal scroll */
-	overflow: hidden; 
 }
 
 .col-centered {
@@ -119,6 +118,8 @@ body,html {
 .results-container {
 	height:100%;
 	text-align: center;
+	max-width:500px;
+	margin:auto;
 }
 
 .result-profile {
