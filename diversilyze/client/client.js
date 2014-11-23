@@ -15,31 +15,39 @@ var auth_url = 'https://accounts.spotify.com/authorize'
   return text;
 };
 
+var callbackTest = 'http://localhost:3000/callback';
+var callback = 'http://equalyze.meteor.com/callback' ;
 
 var state = generateRandomString(16)
 
 var data = {
   response_type: 'token',
   client_id: '3c03b59c6cc2404aa818748e9250ed47',
-  redirect_uri: 'http://localhost:3000/callback',
+  redirect_uri: callback,
   scope: 'user-read-private user-read-email playlist-read-private',
   show_dialog: true
 }
 
 var playlistNbr = 13;
 
+var currentUser;
+
 
 Router.onBeforeAction(function() {
-  if(!AuthInformation.isAuthed()) {
+  if(!Session.get('currentToken')) {
     this.render('login')
   }
   else {
-
-    var token = AuthInformation.findOne().token
+    var token = Session.get('currentToken')
+    console.log("current token: "+token)
     Spotify.setAccessToken(token)
-    Spotify.getMe().then(function(me) {
-      Session.set('currentUser', {userID: me.id, token: token});
+    var promise = Spotify.getMe().then(function(me) {
+      return me;
     });
+
+    promise.then(function(me) {
+      Session.set('currentUser', me.id)
+    })
     this.next()
   }
 
@@ -58,8 +66,8 @@ Router.route('/callback', function() {
   var hash = this.params.hash;
   if(hash) {
     var data = Helpers.queryToObject(hash)
-    console.log(data)
-    AuthInformation.insert({token: data.access_token, userID: data.id})
+    AuthInformation.insert({token: data.access_token})
+    Session.set('currentToken', data.access_token)
     this.redirect('/')
   }
 })
@@ -78,15 +86,13 @@ Template.analyze.helpers({
   },
 
   setAlbumCovers: function() {   
-    var userID = Session.get('currentUser').userID;
-    console.log(userID)
-    console.log(playlistNbr)
+    var userID = Session.get('currentUser');
+    console.log("setAlbumCovers", userID)
     var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
       return playlists.items[playlistNbr].id;
     });
 
     promise.then(function(playlistID) {
-      console.log(playlistID)
       Session.set('currentPlaylist', playlistID);
     });
     var playlistID = Session.get('currentPlaylist');
@@ -94,7 +100,6 @@ Template.analyze.helpers({
       return tracks;
     })
 
-    console.log(promiseTwo)
     promiseTwo.then(function(tracks) {
       for (var i = 0; i < playlistNbr; i++) {
           var url = tracks.items[i].track.album.images[0].url
@@ -103,12 +108,18 @@ Template.analyze.helpers({
           $('#album-'+i).css('background-repeat', "no-repeat")
       };
     })
+  },
+
+  setRelatedAlbums: function() {
+    $('#recommend-1').css('background', 'url('+"http://cdn.necolebitchie.com/wp-content/uploads/2008/07/maino-album-cover-pa.jpg"+') no-repeat')
+    $('#recommend-2').css('background', 'url('+"http://blog.michaellavine.com/wp-content/uploads/2010/10/mb_cover.jpg"+') no-repeat')
+    $('#recommend-3').css('background', 'url('+"http://4.bp.blogspot.com/_9dPtEKC0NW4/Ss7y_zFM4EI/AAAAAAAABaw/CASHQhIKKn8/s400/nirvana_nevermind_album_cover.jpg"+') no-repeat')
   }
 })
 
 Template.login.events({
   'click #login': function() {
-    if(!AuthInformation.isAuthed()) {
+    if(!Session.get('currentToken')) {
       window.location = auth_url + Helpers.toQueryString(data)
     }
   }
@@ -128,7 +139,7 @@ Template.analyze.helpers({
 
 Template.analyze.events({
   'click #analyze': function() {
-    var userID = Session.get('currentUser').userID;
+    var userID = Session.get('currentUser');
     var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
       var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[playlistNbr].id).then(function(tracks) {
         var diversityReturn = Helpers.checkDiversity(tracks, playlists.items[playlistNbr].id);

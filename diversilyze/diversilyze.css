@@ -289,9 +289,23 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 	height:120px;
 	margin:0px 5px 35px 0px;
 	width:120px;
-	background:url("/cover-mock.png") no-repeat;
 	background-size: cover;
 	display: inline-block;
+}
+
+#recommend-1 {
+	background: url("http://cdn.necolebitchie.com/wp-content/uploads/2008/07/maino-album-cover-pa.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#recommend-2 {
+	background: url("http://blog.michaellavine.com/wp-content/uploads/2010/10/mb_cover.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+#recommend-3 {
+	background: url("http://4.bp.blogspot.com/_9dPtEKC0NW4/Ss7y_zFM4EI/AAAAAAAABaw/CASHQhIKKn8/s400/nirvana_nevermind_album_cover.jpg");
 }
 
 .album-cover-small {

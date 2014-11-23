@@ -23,18 +23,13 @@ Helpers = {
         return artist.genres
       })
     })
-    console.log(promises)
     return Promise.all(promises).then(function(genres) {
-      console.log(genres)
       var unique = _.chain(genres).flatten().uniq().value()
       var total = _.chain(genres).flatten().value()
-      console.log("unique: ", unique)
-      console.log("total", total)
       var diversity = unique.length/total.length;
       unique.forEach(function(genre) {
         GenresData.insert({playlistID: playlistID, genre: genre})
       })
-      console.log(diversity)
       Diversity.insert({playlistID: playlistID, diversity: diversity});
       Session.set('currentPlaylist', playlistID)
       return diversity;
