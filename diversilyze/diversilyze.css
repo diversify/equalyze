@@ -32,7 +32,7 @@ body,html {
 	background: #F7F7F7;
 	-webkit-font-smoothing:antialiased;
 	height:100%;
-	font-family:'Gotham-Book', Helvetica, Arial, sans-serif;
+	font-family:'Gotham-Book', sans-serif;
 }
 
 h1, h2, h3, .analyze-button {
@@ -248,6 +248,7 @@ h1, h2, h3, .analyze-button {
 
 .result-msg {
 	font-size:1.2em;
+	font-family:'Gotham-Book', sans-serif;
 }
 
 .album-recommendation {
