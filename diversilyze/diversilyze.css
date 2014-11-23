@@ -31,7 +31,9 @@ body,html {
 }
 
 .landing-container {
-	background: #F7F7F7;
+	/*background: #F7F7F7; */
+	background: url("../diverse-bg.png") no-repeat;
+	background-size: cover;
 	height:100%;
 }
 
