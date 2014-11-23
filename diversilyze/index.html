@@ -1,5 +1,5 @@
 <head>
-  <title>meteor-spotify</title>
+	<title>Equalyzer</title>
 </head>
 
 <body>
@@ -7,13 +7,29 @@
 </body>
 
 <template name="login">
-  <h1>Log in with Spotify</h1>
+	<h1>Log in with Spotify</h1>
 
-  <button id="login">Log in</button>
+	<button id="login">Log in</button>
 </template>
 
 <template name="analyze">
-  <h1>Analyze</h1>
-  <input type="button" class="analyze-button" value="Run my analyze">
+	<h1>Analyze</h1>
+	<input type="button" class="analyze-button" value="Run my analyze">
+	{{#each diversitys}}
+		{{>diversityItem}}
+	{{/each}}
+</template>
 
+<template name="diversityItem">
+	<h1>{{fixDiversity diversity}}</h1>
+</template>
+
+<template name="result">
+<!--{{#each relatedStuff}}
+	<h1>{{artist.name}}</h1>
+{{/each}}-->
+</template>
+
+<template name="artistItem">
+<h1>{{artist.name}}</h1>
 </template>

@@ -1,32 +1,47 @@
 var auth_url = 'https://accounts.spotify.com/authorize'
 
+/**
+ * Generates a random string containing numbers and letters
+ * @param  {number} length The length of the string
+ * @return {string} The generated string
+ */
+ var generateRandomString = function(length) {
+  var text = '';
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+};
+
+var state = generateRandomString(16)
+
 var data = {
   response_type: 'token',
   client_id: '3c03b59c6cc2404aa818748e9250ed47',
   redirect_uri: 'http://localhost:3000/callback',
-  scope: 'user-read-private user-read-email',
+  scope: 'user-read-private user-read-email playlist-read-private',
   show_dialog: true
 }
 
 Router.onBeforeAction(function() {
-
-  console.log('onBeforeAction');
-  if(!Tokens.isAuthed()) {
+  if(!AuthInformation.isAuthed()) {
     this.render('login')
   }
   else {
-    var token = Tokens.findOne().token
+
+    var token = AuthInformation.findOne().token
     Spotify.setAccessToken(token)
+    Spotify.getMe().then(function(me) {
+      Session.set('currentUser', {userID: me.id, token: token});
+    });
     this.next()
   }
 
 }, { except: ['callback'] })
 
 Router.route('/', function() {
-  console.log('home');
-  Spotify.getMe().then(function(data) {
-    console.log(data)
-  })
   this.render('analyze')
 })
 
@@ -35,16 +50,111 @@ Router.route('/callback', function() {
   var hash = this.params.hash;
   if(hash) {
     var data = Helpers.queryToObject(hash)
-    Tokens.insert({token: data.access_token})
+    console.log(data)
+    AuthInformation.insert({token: data.access_token, userID: data.id})
     this.redirect('/')
   }
+})
+
+Router.route('/result', function() {
+  this.render('result')
+})
+
+Template.result.helpers({
+  artists: function() {
+    return ArtistsData.find();
+  },
+
+  genres: function() {
+    return GenresData.find();
+  },
+
+  relatedStuff: function() {
+    var playlistID = Session.get('currentPlaylist')
+    var relatedArtists = RelatedArtistData.find({playlistID: playlistID}).fetch();
+    var genres = GenresData.find({playlistID: playlistID}).fetch();
+    var genresData = [];
+    var artistData = [];
+    var addIt = true;
+    var n = 0
+    var stop = false;
+    genres.forEach(function(genreObj){
+      genresData.push(genreObj.genre);
+    })
+    relatedArtists.forEach(function(artist) {
+      if(!stop) {
+        artist.genres.forEach(function(genre) {
+          var check = $.inArray(genre, genresData);
+          if(check >= 0) {
+            addIt = false;
+          }
+        })
+        if(addIt) {
+          console.log(n)
+          n++;
+          if(n<30) {
+            Spotify.getArtist(artist.id).then(function(artistObj) {
+              UniqueRelatedArtists.insert({playlistID: playlistID, artist: artistObj})
+              console.log('asd')
+              artistData.push(artistObj)
+            })
+          } else {
+            stop = true
+          }
+        }
+        addIt = true;
+      }})
+    console.log(artistData)
+    //console.log("Playlist: " + playlistID)
+  //  console.log("RelatedArtistData: " + relatedArtists)
+//    console.log("Genres: " + genres);
+},
+
+relatedArtists: function() {
+  var playlistID =  Session.get('currentPlaylist');
+  return UniqueRelatedArtists.find({playlistID: playlistID});
+}
 })
 
 Template.login.events({
   'click #login': function() {
 
-    if(!Tokens.isAuthed()) {
+    if(!AuthInformation.isAuthed()) {
       window.location = auth_url + Helpers.toQueryString(data)
     }
+  }
+})
+
+Template.analyze.helpers({
+  playlists: function() {
+
+    return Playlists.find();
+  },
+  diversitys: function() {
+    return Diversity.find();
+  }
+
+  
+})
+
+Template.diversityItem.helpers({
+  fixDiversity: function(diversityRate) {
+    return Math.round(diversityRate * 100);
+  }
+})
+
+Template.analyze.events({
+  'click input': function() {
+    var userID = Session.get('currentUser').userID;
+    var promises = Spotify.getUserPlaylists(userID).then(function(playlists) {
+      var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[13].id).then(function(tracks) {
+        var diversityReturn = Helpers.checkDiversity(tracks, playlists.items[13].id);
+        return diversityReturn;
+      })
+      return returnTwo;
+    })
+    Promise.all(promises).then(function(diversity) {
+      console.log("final")
+    })
   }
 })
