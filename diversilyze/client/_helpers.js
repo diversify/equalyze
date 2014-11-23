@@ -26,7 +26,7 @@ Helpers = {
         return artist.genres
       })
     })
-
+    console.log(promises)
     return Promise.all(promises).then(function(genres) {
       var unique = _.chain(genres).flatten().uniq().value()
       var total = _.chain(genres).flatten().value()

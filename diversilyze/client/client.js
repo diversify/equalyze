@@ -146,15 +146,35 @@ Template.analyze.helpers({
 Template.analyze.events({
   'click #analyze': function() {
     var userID = Session.get('currentUser').userID;
-    var promises = Spotify.getUserPlaylists(userID).then(function(playlists) {
+    var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
       var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[13].id).then(function(tracks) {
         var diversityReturn = Helpers.checkDiversity(tracks, playlists.items[13].id);
         return diversityReturn;
       })
       return returnTwo;
     })
-    Promise.all(promises).then(function(diversity) {
-      console.log("final")
+    promise.then(function(diversity) {
+      var pieData = [
+      {
+        value: Math.round(diversity*100),
+        segmentShowStroke : false,
+        segmentStrokeWidth : 0,
+        color:"#F2345A",
+        animationEasing : "easeOutBounce",
+        label: "Men"
+      },
+      {
+        value: Math.round((1-diversity)*100),
+        segmentShowStroke : false,
+        highlight: "#5AD3D1",
+        color:"#FF3500",
+        label: "Women"
+      }
+      ];
+
+      var ctx = document.getElementById("chart-area").getContext("2d");
+      var myPie = new Chart(ctx).Pie(pieData);
+      console.log(myPie)
     })
   }
 })

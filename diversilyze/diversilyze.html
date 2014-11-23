@@ -26,7 +26,7 @@
 
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
  		<div class="logo-container animated ">
- 			<img src="/Logo.png" alt="">
+ 			<img src="/logo.png" alt="">
  		</div>
 	 		<p class="analyze-desc">
 	 			How gender equal are your playlist? Analyze your playlists now!
@@ -64,30 +64,6 @@
 				</canvas>
 			</div>
 		</div>
-
-		<script>
-			var pieData = [
-					{
-					value: {{diversity.diversity}},
-					segmentShowStroke : false,
-					segmentStrokeWidth : 0,
-					color:"#F2345A",
-					animationEasing : "easeOutBounce",
-					label: "Men"
-				},
-				{
-					value: 1-{{diversity.diversity}},
-					segmentShowStroke : false,
-					highlight: "#5AD3D1",
-					color:"#FF3500",
-					label: "Women"
-				}
-			];
-			window.onload = function(){
-				var ctx = document.getElementById("chart-area").getContext("2d");
-				window.myPie = new Chart(ctx).Pie(pieData);
-			};
-		</script>
 
 
  		<h2 class="result-msg-title">Oh no!</h2>
