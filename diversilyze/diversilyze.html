@@ -26,8 +26,8 @@
 	<div class="landing-container">
 
 		<div class="col-xs-11 col-md-6 landing-content-container col-centered">
-			<div class="logo-container animated ">
-				<img src="/logo.png" alt="">
+			<div class="logo-container animated fadeInDown">
+				<img src="/Logo.png" alt="">
 			</div>
 			<p class="analyze-desc">
 				How gender equal are your playlist? Analyze your playlists now!
@@ -66,9 +66,10 @@
 			</div>
 		</div>
 
-
-		<h2 class="result-msg-title">Oh no!</h2>
-		<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
+		<div class="result-msg-container animated">
+			<h2 class="result-msg-title">Oh no!</h2>
+			<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
+		</div>
 	</div>
 
 	<div class="album-recommendation col-xs-10 col-centered">
@@ -81,9 +82,9 @@
 <script>
 $(document).ready(function (){
 	$(".analyze-button").click(function (){
-		$('html, body').animate({
+		$('html, body').delay(300).animate({
 			scrollTop: $(".results-container").offset().top
-		}, 500);
+		}, 700);
 	});
 });
 </script>
@@ -98,16 +99,19 @@ $(document).ready(function (){
 </template>
 
 <template name="login">
-
-	<h1>Log in with Spotify</h1>
-
-	<button id="login">Log in</button>
+<div class="login-bg">
+	 <div class="login-container col-xs-10 col-centered">
+		<h2>Log in with Spotify</h2>
+		<p class="login-desc">You'll have to give us access to your playlists. Sign into spotify</p>
+		<button id="login" class="analyze-button">Continue</button>
+	 </div>
+ </div>
 </template>
 
 <template name="about">
 	<div class="col-xs-11 col-md-6 landing-content-container col-centered about">
 		<div class="logo-container animated ">
-			<img src="/logo.png" alt="">
+			<img src="/Logo.png" alt="">
 		</div>
 		<h3 class="about">Why?</h3>
 		<p class="analyze-desc about">
@@ -137,9 +141,4 @@ $(document).ready(function (){
 								</div>
 							</template>
 
-						<template name="login">
-							<div class="container-login col-xs-10">
-								<h1>Log in with Spotify</h1>
-								<button id="login" class="analyze-button">Log in</button>
-							</div>
-						</template>
+						
