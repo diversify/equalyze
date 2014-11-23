@@ -35,7 +35,11 @@ body,html {
 	font-family:'Gotham-Book', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title {
+p {
+	font-family:'Gotham-Book', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
  font-family: 'Gotham-Bold';
  font-weight: 700;
 }
@@ -262,4 +266,12 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title {
 	background:url("/cover-mock.png") no-repeat;
 	background-size: cover;
 	display: inline-block;
+}
+
+
+/* ABOUT PAGE */
+
+p.about {
+	text-align:left;
+	font-size:1.6rem;
 }
