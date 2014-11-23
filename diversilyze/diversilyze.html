@@ -9,16 +9,29 @@
 
 <body>
 <!-- {{>home}} -->
+
+
+</body>
+
+
+<template name="home">
+  <a href="#" id="login">Login</a>
+  {{#each users}}
+  	{{>userItem}}
+  {{/each}} 
+</template>
+
+<template name="analyze">
 <div class="landing-container">
 
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
  		<div class="logo-container animated ">
- 			<img src="/Logo.png" alt="">
+ 			<img src="/logo.png" alt="">
  		</div>
 	 		<p class="analyze-desc">
 	 			How gender equal are your playlist? Analyze your playlists now!
 	 		</p>
- 		<div class="analyze-button animated flipInX">let's analyze</div>
+ 		<div id="analyze" class="analyze-button animated flipInX">let's analyze</div>
  	</div>
  	<div class="bottom-container-fix">
 		<div class="album-cover-container">
@@ -52,39 +65,14 @@
 			</div>
 		</div>
 
-		<script>
-			var pieData = [
-					{
-					value: 50,
-					segmentShowStroke : false,
-					segmentStrokeWidth : 0,
-					color:"#F2345A",
-					animationEasing : "easeOutBounce",
-					label: "Men"
-				},
-				{
-					value: 50,
-					segmentShowStroke : false,
-					highlight: "#5AD3D1",
-					color:"#FF3500",
-					label: "Women"
-				}
-			];
-			window.onload = function(){
-				var ctx = document.getElementById("chart-area").getContext("2d");
-				window.myPie = new Chart(ctx).Pie(pieData);
-			};
-		</script>
-
-
  		<h2 class="result-msg-title">Oh no!</h2>
  		<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
  	</div>
 
  	<div class="album-recommendation col-xs-10 col-centered">
- 		<h4 class="recommend-title">Check these albums out:</h4>
- 		<div class="album-cover-recommend" id="recommend-1"></div>
- 		<div class="album-cover-recommend" id="recommend-2"></div>
+ 		<h4 class="recommend-title">Check these albums out</h4>
+ 		<a href="#"><div class="album-cover-recommend" id="recommend-1"></div></a>
+ 		<a href="#"><div class="album-cover-recommend" id="recommend-2"></div></a>
  	</div>
  </div>
   
@@ -96,22 +84,18 @@
 	                    }, 500);
 	            });
 	        });
-	  </script>
 
-</body>
+	  </script></template>
 
 
-<template name="home">
-  <a href="#" id="login">Login</a>
-  {{#each users}}
-  	{{>userItem}}
-  {{/each}} 
-</template>
 
-<template name="analyze">
-	<input type="button" class="button" value="Analyze">
-</template>
 
 <template name="userItem">
 <li class="song-name"></li>
+</template>
+
+<template name="login">
+	<h1>Log in with Spotify</h1>
+
+	<button id="login">Log in</button>
 </template>

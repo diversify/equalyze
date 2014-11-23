@@ -257,7 +257,7 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title {
 
 .album-cover-recommend {
 	height:120px;
-	margin:0px 5px;
+	margin:0px 5px 35px 0px;
 	width:120px;
 	background:url("/cover-mock.png") no-repeat;
 	background-size: cover;
