@@ -22,7 +22,8 @@ body,html {
 	background: #F7F7F7;
 	-webkit-font-smoothing:antialiased;
 	height:100%;
-	/* overflow-x: hidden; Fix for horizontal scroll */ 
+	/* overflow-x: hidden; Fix for horizontal scroll */
+	overflow: hidden; 
 }
 
 .col-centered {
@@ -31,8 +32,8 @@ body,html {
 }
 
 .landing-container {
-	/*background: #F7F7F7; */
-	background: url("../diverse-bg.png") no-repeat;
+	background: #F7F7F7;
+	/*background: url("../diverse-bg.png") no-repeat; */
 	background-size: cover;
 	height:100%;
 }
@@ -115,7 +116,6 @@ body,html {
 
 
 /* RESULT: PIE CHART */
-
 .results-container {
 	height:100%;
 	text-align: center;
@@ -131,20 +131,20 @@ body,html {
 	background-image:url("profilepic.png"); 
 	/* GET FROM SOMETHING LIKE $('#profile-chart').css('background-image', 'url("'+user.img+');') */
 	background-repeat:no-repeat;
-	width:300px;
-	height:300px;
+	width:220px;
+	height:220px;
 	background-size:cover;
-	-webkit-filter: grayscale(100%);
+	/*-webkit-filter: grayscale(100%); */
 	-webkit-animation:bounce 1000ms linear both;
 }
 
 
 #canvas-holder {
-	opacity: 0.4;
+	opacity: .85;
 }
 
 #chart-area {
-		-webkit-filter: grayscale(0%)!important;
+	/* -webkit-filter: grayscale(0%)!important; */
 }
 
 
