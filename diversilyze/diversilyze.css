@@ -129,7 +129,7 @@ body,html {
 }
 
 .result-profile {
-	padding:50px 30px;
+	padding:50px 30px 10px 30px;
 }
 
 .result-chart {
@@ -236,3 +236,16 @@ body,html {
 	font-size:1.2em;
 }
 
+.album-recommendation {
+	width:80%;
+	text-align: left;
+}
+
+.album-cover-recommend {
+	height:120px;
+	margin:0px 5px;
+	width:120px;
+	background:url("/cover-mock.png") no-repeat;
+	background-size: cover;
+	display: inline-block;
+}
