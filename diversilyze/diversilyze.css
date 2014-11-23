@@ -135,6 +135,7 @@ body,html {
 	height:300px;
 	background-size:cover;
 	-webkit-filter: grayscale(100%);
+	-webkit-animation:bounce 1000ms linear both;
 }
 
 
