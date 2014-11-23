@@ -13,30 +13,29 @@
 
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
  		<div class="logo-container animated ">
- 			<img src="/logo.png" alt="">
-
+ 			<img src="/Logo.png" alt="">
  		</div>
- 		<p class="analyze-desc">
- 			How gender equal are your playlist? Analyze your playlists now!
- 		</p>
+	 		<p class="analyze-desc">
+	 			How gender equal are your playlist? Analyze your playlists now!
+	 		</p>
  		<div class="analyze-button animated flipInX">let's analyze</div>
  	</div>
  	<div class="bottom-container-fix">
-	<div class="album-cover-container">
-		<div class="album-cover-large" id="album-1">
-		</div><div class="album-cover-small" id="album-1">
-	  	</div><div class="album-cover-large" id="album-2">
-	  	</div><div class="album-cover-small" id="album-3">
-	  	</div><div class="album-cover-large" id="album-4">
-		</div><div class="album-cover-small" id="album-5">
-		</div><div class="album-cover-large" id="album-6">
-		</div><div class="album-cover-small" id="album-7">
-		</div><div class="album-cover-large" id="album-8">
-		</div><div class="album-cover-small" id="album-9">
-		</div><div class="album-cover-large" id="album-10">
-		</div><div class="album-cover-small" id="album-11">
+		<div class="album-cover-container">
+			<div class="album-cover-large" id="album-1">
+			</div><div class="album-cover-small" id="album-1">
+		  	</div><div class="album-cover-large" id="album-2">
+		  	</div><div class="album-cover-small" id="album-3">
+		  	</div><div class="album-cover-large" id="album-4">
+			</div><div class="album-cover-small" id="album-5">
+			</div><div class="album-cover-large" id="album-6">
+			</div><div class="album-cover-small" id="album-7">
+			</div><div class="album-cover-large" id="album-8">
+			</div><div class="album-cover-small" id="album-9">
+			</div><div class="album-cover-large" id="album-10">
+			</div><div class="album-cover-small" id="album-11">
+			</div>
 		</div>
-	</div>
 	</div>
  </div>
 
@@ -44,8 +43,7 @@
 
 
  <div class="results-container">
-
- 	<div class="result-profile col-xs-9 col-centered">
+	<div class="result-profile col-xs-9 col-centered">
 		<div class="result-chart">
 			<div id="canvas-holder">
 				<canvas id="chart-area" width="220" height="220" >
@@ -57,7 +55,7 @@
 		<script>
 			var pieData = [
 					{
-					value: 75,
+					value: 50,
 					segmentShowStroke : false,
 					segmentStrokeWidth : 0,
 					color:"#F2345A",
@@ -65,9 +63,10 @@
 					label: "Men"
 				},
 				{
-					value: 25,
+					value: 50,
 					segmentShowStroke : false,
 					highlight: "#5AD3D1",
+					color:"#FF3500",
 					label: "Women"
 				}
 			];
@@ -78,17 +77,14 @@
 		</script>
 
 
- 	<h2 class="result-msg-title">Oh no!</h2>
- 	<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
-
-	
+ 		<h2 class="result-msg-title">Oh no!</h2>
+ 		<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
  	</div>
 
  	<div class="album-recommendation col-xs-10 col-centered">
- 			<h4 class="recommend-title">Check these albums out:</h4>
- 			<div class="album-cover-recommend" id="recommend-1"></div>
- 			<div class="album-cover-recommend" id="recommend-2"></div>
- 
+ 		<h4 class="recommend-title">Check these albums out:</h4>
+ 		<div class="album-cover-recommend" id="recommend-1"></div>
+ 		<div class="album-cover-recommend" id="recommend-2"></div>
  	</div>
  </div>
   
