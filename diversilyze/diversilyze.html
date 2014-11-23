@@ -1,5 +1,5 @@
 <head>
-	<title>Equalyzer</title>
+	<title>Equalyze</title>
 	<link rel="stylesheet" href="diversilyze.css">
 	<link rel="stylesheet" href="animate.css">
 	<!-- Latest compiled and minified CSS -->
@@ -9,11 +9,20 @@
 </head>
 
 <body>
+	
 	<!-- {{>home}} -->
 
 
 </body>
 
+<template name="header">
+	<a href="/about" class="menu-item" title="About">About</a>
+	<a href="/">
+		<div class="logo-container animated fadeInDown">
+			<img src="/logo.png" alt="">
+		</div>
+	</a>
+</template>
 
 <template name="home">
 	<a href="#" id="login">Login</a>
@@ -25,11 +34,9 @@
 <template name="analyze">
 
 	<div class="landing-container">
-
+		{{>header}}
 		<div class="col-xs-11 col-md-6 landing-content-container col-centered">
-			<div class="logo-container animated fadeInDown">
-				<img src="/logo.png" alt="">
-			</div>
+
 			<p class="analyze-desc">
 				How gender equal are your playlist? Analyze your playlists now!
 			</p>
@@ -111,26 +118,24 @@ $(document).ready(function (){
 </template>
 
 <template name="about">
+	{{>header}}
 	<div class="col-xs-11 col-md-6 landing-content-container col-centered about">
-		<div class="logo-container animated ">
-			<img src="/Logo.png" alt="">
-		</div>
+
 		<h3 class="about">Why?</h3>
 		<p class="analyze-desc about">
-			Black on white: women are underrepresented in most areas in society. The music industry is not an exception. According to a research by the organization Jämställd Festival (Equal festival), 73% of the Swedish festival acts are of male gender. In Europe, the numbers are even more unequal: 91% of the artists are men.</p>
+			Black on white: women are underrepresented in most areas in society. The music industry is not an exception. According to a research by the organization <a href="http://jamstalldfestival.se" target="_blank">Jämställd Festival</a> (Equal festival), 73% of the Swedish festival acts are of male gender. In Europe, the numbers are even more unequal: <a href="http://jamstalldfestival.se/91-av-akterna-pa-europas-tio-storsta-urbana-festivaler-ar-mansdominerade/" target="_blank">91% of the artists are men</a>.</p>
 			<p class="analyze-desc about">
 				And why is this? There’s definitely not a lack of women playing music. In music school, xx xx FIND STATISTICS FOR THIS</p>
 				<p class="analyze-desc about">
-					For some reason, women disappear somewhere along the road and don’t manage to reach out in the same way. This means that we’re probably missing out on lots of good music, only because of the patriarchal structures we have in society today.</p>
+					For some reason, women disappear somewhere along the road and don’t manage to reach out in the same way. Basically, it is harder to succeed as a woman. And this means that we’re probably missing out on lots of good music, only because of the patriarchal structures we have in society today (<a href="http://jamstalldfestival.se/boka-jamstallt/argumentshjalpen/" target="_blank" title="Jämställd festival">here</a> you can read lots of good arguments for why we need to book more women to festivals).</p>
 					<p class="analyze-desc about">
-						This, we want to change.</p>
+						We want to change this</p>
 
 
 						<h3 class="about">How?</h3>
-						<p class="analyze-desc about">We want to create awareness of how unequal the music industry is today by putting it black on white how the gender balance looks in your and your friends’ playlists.</p>
+						<p class="analyze-desc about">We want to create awareness of the inequality in the music industry today by visualizing the gender balance in your Spotify playlists.</p>
 						<p class="analyze-desc about">
 							Moreover, as festivals often create playlists of their lineups, we have the opportunity to put pressure on those to reach an equal gender balance. Having an equal lineup and being able to share this on social media is a great selling argument for festivals.</p>
-
 
 
 							<h3 class="about">What?</h3>
@@ -138,9 +143,7 @@ $(document).ready(function (){
 							<p class="analyze-desc about">
 								Of course you can share your results on Facebook, as well as browsing other people’s results.</p>
 								<p class="analyze-desc about">
-									Let’s equalyze the music industry.</p>
+									Let's equalyze our music today!</p>
 
 								</div>
 							</template>
-
-						

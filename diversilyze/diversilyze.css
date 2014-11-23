@@ -33,6 +33,15 @@ body,html {
 	-webkit-font-smoothing:antialiased;
 	height:100%;
 	font-family:'Gotham-Book', sans-serif;
+	color:#111;
+}
+
+a {
+	color:inherit!important;
+	text-decoration:underline!important;
+}
+a:hover {
+	color:#F13465 !important;
 }
 
 button {
@@ -51,7 +60,7 @@ p {
 	font-family:'Gotham-Book', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
+h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about, .menu-item {
 
  font-family: 'Gotham-Bold';
  font-weight: 700;
@@ -85,7 +94,7 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 
 .logo-container {
 	text-align: center;
-	margin:25px 0px 25px 0px;
+	margin:75px 0px 25px 0px;
 }
 
 .analyze-button {
@@ -272,12 +281,14 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 	font-weight:bold;
 	margin:0;
 	margin-top:15px;
+
 }
 
 .result-msg {
 	font-size:1.2em;
 	font-family:'Gotham-Book', sans-serif;
 	text-align: left;
+	margin-top:5px;
 }
 
 .album-recommendation {
@@ -318,6 +329,7 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 
 /* Log in style */ 
 
+
 .login-container {
 	text-align: center;
 	padding:100px 0px;
@@ -339,11 +351,27 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 }
 
 
+/* MENU */
+.menu-item {
+	color:inherit;
+	text-align:right;
+	padding:20px;
+	font-size:18px;
+	position:absolute;
+	top:30px;
+	right:30px;
+	text-decoration:none!important;
+}
+.menu-item:hover {
+	text-decoration:none;
+	color:inherit;
+}
+
 /* ABOUT PAGE */
 
 p.about {
 	text-align:left;
-	font-size:1.6rem;
+	font-size:16px;
 	margin-bottom:17px;
 }
 
@@ -354,5 +382,5 @@ h3.about {
 	margin-bottom:8px;
 }
 div.about {
-	margin-bottom:100px;
+	margin:80px auto 100px;
 }
