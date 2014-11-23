@@ -35,6 +35,10 @@ body,html {
 	font-family:'Gotham-Book', sans-serif;
 }
 
+.scroll-lock {
+		overflow:hidden;
+}
+
 h1, h2, h3, .analyze-button {
  font-family: 'Gotham-Bold';
  font-weight: 700;
@@ -149,16 +153,28 @@ h1, h2, h3, .analyze-button {
 .result-chart {
 	border-radius: 50%;
 	margin:0 auto;
-	background-image:url("profile_img.png"); 
+	background-image:url(""); 
 	/* GET FROM SOMETHING LIKE $('#profile-chart').css('background-image', 'url("'+user.img+');') */
 	background-repeat:no-repeat;
 	width:220px;
 	height:220px;
 	background-size:cover;
-	/*-webkit-filter: grayscale(100%); */
-	-webkit-animation:bounce 1000ms linear both;
+	-webkit-animation-delay:0.7s;
+	-o-animation-delay:0.7s;
+	-moz-animation-delay:0.7s;
 }
 
+.result-msg-container {
+	-webkit-animation-delay:1s;
+	-o-animation-delay:1s;
+	-moz-animation-delay:1s;
+	animation-delay:1s;
+}
+
+.bounce-animation {
+	-webkit-animation:bounce 1000ms linear both;
+	-webkit-animation-delay:0.5s;
+}
 
 #canvas-holder {
 	opacity: .85;
@@ -167,7 +183,6 @@ h1, h2, h3, .analyze-button {
 #chart-area {
 	/* -webkit-filter: grayscale(0%)!important; */
 }
-
 
 
 @-webkit-keyframes bounce { 
@@ -263,3 +278,8 @@ h1, h2, h3, .analyze-button {
 	background-size: cover;
 	display: inline-block;
 }
+
+
+/* Log in style */ 
+
+

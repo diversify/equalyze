@@ -26,7 +26,7 @@
 
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
  		<div class="logo-container animated ">
- 			<img src="/logo.png" alt="">
+ 			<img src="/Logo.png" alt="">
  		</div>
 	 		<p class="analyze-desc">
 	 			How gender equal are your playlist? Analyze your playlists now!
@@ -35,18 +35,18 @@
  	</div>
  	<div class="bottom-container-fix">
 		<div class="album-cover-container">
-			<div class="album-cover-large" id="album-1">
-			</div><div class="album-cover-small" id="album-1">
-		  	</div><div class="album-cover-large" id="album-2">
-		  	</div><div class="album-cover-small" id="album-3">
-		  	</div><div class="album-cover-large" id="album-4">
-			</div><div class="album-cover-small" id="album-5">
-			</div><div class="album-cover-large" id="album-6">
-			</div><div class="album-cover-small" id="album-7">
-			</div><div class="album-cover-large" id="album-8">
-			</div><div class="album-cover-small" id="album-9">
-			</div><div class="album-cover-large" id="album-10">
-			</div><div class="album-cover-small" id="album-11">
+			<div class="album-cover-large animated" id="album-1">
+			</div><div class="album-cover-small animated" id="album-1">
+		  	</div><div class="album-cover-large animated" id="album-2">
+		  	</div><div class="album-cover-small animated" id="album-3">
+		  	</div><div class="album-cover-large animated" id="album-4">
+			</div><div class="album-cover-small animated" id="album-5">
+			</div><div class="album-cover-large animated" id="album-6">
+			</div><div class="album-cover-small animated" id="album-7">
+			</div><div class="album-cover-large animated" id="album-8">
+			</div><div class="album-cover-small animated" id="album-9">
+			</div><div class="album-cover-large animated" id="album-10">
+			</div><div class="album-cover-small animated" id="album-11">
 			</div>
 		</div>
 	</div>
@@ -57,16 +57,17 @@
 
  <div class="results-container">
 	<div class="result-profile col-xs-9 col-centered">
-		<div class="result-chart">
+		<div class="result-chart animated">
 			<div id="canvas-holder">
 				<canvas id="chart-area" width="220" height="220" >
 
 				</canvas>
 			</div>
 		</div>
-
- 		<h2 class="result-msg-title">Oh no!</h2>
- 		<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
+		<div class="result-msg-container animated">
+	 		<h2 class="result-msg-title">Oh no!</h2>
+	 		<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
+ 		</div>
  	</div>
 
  	<div class="album-recommendation col-xs-10 col-centered">
@@ -79,9 +80,9 @@
 	  <script>
 	        $(document).ready(function (){
 	            $(".analyze-button").click(function (){
-	                    $('html, body').animate({
+	                    $('html, body').delay(300).animate({
 	                        scrollTop: $(".results-container").offset().top
-	                    }, 500);
+	                    }, 700);
 	            });
 	        });
 
@@ -95,7 +96,8 @@
 </template>
 
 <template name="login">
-	<h1>Log in with Spotify</h1>
-
-	<button id="login">Log in</button>
+	<div class="container-login col-xs-10">
+		<h1>Log in with Spotify</h1>
+		<button id="login" class="analyze-button">Log in</button>
+	</div>
 </template>
