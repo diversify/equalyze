@@ -272,12 +272,14 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 	font-weight:bold;
 	margin:0;
 	margin-top:15px;
+
 }
 
 .result-msg {
 	font-size:1.2em;
 	font-family:'Gotham-Book', sans-serif;
 	text-align: left;
+	margin-top:5px;
 }
 
 .album-recommendation {
