@@ -9,6 +9,19 @@
 
 <body>
 <!-- {{>home}} -->
+
+
+</body>
+
+
+<template name="home">
+  <a href="#" id="login">Login</a>
+  {{#each users}}
+  	{{>userItem}}
+  {{/each}} 
+</template>
+
+<template name="analyze">
 <div class="landing-container">
 
  	<div class="col-xs-11 col-md-6 landing-content-container col-centered">
@@ -18,7 +31,7 @@
 	 		<p class="analyze-desc">
 	 			How gender equal are your playlist? Analyze your playlists now!
 	 		</p>
- 		<div class="analyze-button animated flipInX">let's analyze</div>
+ 		<div id="analyze" class="analyze-button animated flipInX">let's analyze</div>
  	</div>
  	<div class="bottom-container-fix">
 		<div class="album-cover-container">
@@ -55,7 +68,7 @@
 		<script>
 			var pieData = [
 					{
-					value: 50,
+					value: {{diversity.diversity}},
 					segmentShowStroke : false,
 					segmentStrokeWidth : 0,
 					color:"#F2345A",
@@ -63,7 +76,7 @@
 					label: "Men"
 				},
 				{
-					value: 50,
+					value: 1-{{diversity.diversity}},
 					segmentShowStroke : false,
 					highlight: "#5AD3D1",
 					color:"#FF3500",
@@ -96,22 +109,14 @@
 	                    }, 500);
 	            });
 	        });
-	  </script>
-
-</body>
-
-
-<template name="home">
-  <a href="#" id="login">Login</a>
-  {{#each users}}
-  	{{>userItem}}
-  {{/each}} 
-</template>
-
-<template name="analyze">
-	<input type="button" class="button" value="Analyze">
-</template>
+	  </script></template>
 
 <template name="userItem">
 <li class="song-name"></li>
+</template>
+
+<template name="login">
+	<h1>Log in with Spotify</h1>
+
+	<button id="login">Log in</button>
 </template>

@@ -60,7 +60,7 @@ Router.route('/result', function() {
   this.render('result')
 })
 
-Template.result.helpers({
+Template.analyze.helpers({
   artists: function() {
     return ArtistsData.find();
   },
@@ -130,21 +130,21 @@ Template.analyze.helpers({
 
     return Playlists.find();
   },
-  diversitys: function() {
-    return Diversity.find();
+  diversity: function() {
+    return Diversity.findOne();
   }
 
   
 })
 
-Template.diversityItem.helpers({
+/*Template.diversityItem.helpers({
   fixDiversity: function(diversityRate) {
     return Math.round(diversityRate * 100);
   }
-})
+})*/
 
 Template.analyze.events({
-  'click input': function() {
+  'click #analyze': function() {
     var userID = Session.get('currentUser').userID;
     var promises = Spotify.getUserPlaylists(userID).then(function(playlists) {
       var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[13].id).then(function(tracks) {

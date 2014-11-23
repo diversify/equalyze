@@ -37,7 +37,6 @@ Helpers = {
       
       Diversity.insert({playlistID: playlistID, diversity: diversity});
       Session.set('currentPlaylist', playlistID)
-      Router.go('/result')
       return diversity;
     })
 
