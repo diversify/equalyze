@@ -306,11 +306,13 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 .login-container {
 	text-align: center;
 	padding:100px 0px;
+	color:#fff;
 }
 
 .login-desc {
 	text-align: left;
 	padding:0px 20px;
+	font-size:1.3em;
 }
 
 .login-bg {
