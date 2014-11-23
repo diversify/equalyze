@@ -15,5 +15,32 @@ Helpers = {
       obj[keyValues[0]] = keyValues[1]
       return obj
     }, {})
+  },
+
+  checkDiversity: function(tracks, playlistID) {
+    var promises = tracks.items.map(function(track) {
+      return Spotify.getArtist(track.track.artists[0].id).then(function(artist) {
+        Spotify.getArtistRelatedArtists(artist.id).then(function(relatedArtist) {
+          RelatedArtistData.insert({playlistID: playlistID, artists: artist.id, genres: artist.genres});
+        })
+        return artist.genres
+      })
+    })
+
+    return Promise.all(promises).then(function(genres) {
+      var unique = _.chain(genres).flatten().uniq().value()
+      var total = _.chain(genres).flatten().value()
+      var diversity = unique.length/total.length;
+      unique.forEach(function(genre) {
+        GenresData.insert({playlistID: playlistID, genre: genre})
+      })
+      
+      Diversity.insert({playlistID: playlistID, diversity: diversity});
+      Session.set('currentPlaylist', playlistID)
+      Router.go('/result')
+      return diversity;
+    })
+
   }
 }
+
