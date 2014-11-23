@@ -15,6 +15,7 @@ var auth_url = 'https://accounts.spotify.com/authorize'
   return text;
 };
 
+
 var state = generateRandomString(16)
 
 var data = {
@@ -157,6 +158,10 @@ Template.analyze.events({
       })
       return returnTwo;
     })
+      $(".result-chart").addClass("flipInX"); // Pop-in animation of results
+      $(".result-msg-container").addClass("fadeInDown");
+      $(".album-cover-small").addClass("fadeOutUp");
+      $(".album-cover-large").addClass("fadeOutUp");
     promise.then(function(diversity) {
 
       var promiseTwo = Spotify.getUser(userID).then(function(user) {
@@ -171,7 +176,6 @@ Template.analyze.events({
           segmentShowStroke : false,
           segmentStrokeWidth : 0,
           color:"#F2345A",
-          animationEasing : "easeOutBounce",
           label: "Men"
         },
         {

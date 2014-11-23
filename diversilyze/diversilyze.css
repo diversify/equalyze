@@ -35,11 +35,18 @@ body,html {
 	font-family:'Gotham-Book', sans-serif;
 }
 
+
+.scroll-lock {
+		overflow:hidden;
+}
+
+
 p {
 	font-family:'Gotham-Book', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
+
  font-family: 'Gotham-Bold';
  font-weight: 700;
 }
@@ -153,16 +160,28 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 .result-chart {
 	border-radius: 50%;
 	margin:0 auto;
-	background-image:url("profile_img.png"); 
+	background-image:url(""); 
 	/* GET FROM SOMETHING LIKE $('#profile-chart').css('background-image', 'url("'+user.img+');') */
 	background-repeat:no-repeat;
 	width:220px;
 	height:220px;
 	background-size:cover;
-	/*-webkit-filter: grayscale(100%); */
-	-webkit-animation:bounce 1000ms linear both;
+	-webkit-animation-delay:0.7s;
+	-o-animation-delay:0.7s;
+	-moz-animation-delay:0.7s;
 }
 
+.result-msg-container {
+	-webkit-animation-delay:1s;
+	-o-animation-delay:1s;
+	-moz-animation-delay:1s;
+	animation-delay:1s;
+}
+
+.bounce-animation {
+	-webkit-animation:bounce 1000ms linear both;
+	-webkit-animation-delay:0.5s;
+}
 
 #canvas-holder {
 	opacity: .85;
@@ -171,7 +190,6 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 #chart-area {
 	/* -webkit-filter: grayscale(0%)!important; */
 }
-
 
 
 @-webkit-keyframes bounce { 
@@ -269,6 +287,10 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about {
 }
 
 
+/* Log in style */ 
+
+
+
 /* ABOUT PAGE */
 
 p.about {
@@ -276,6 +298,7 @@ p.about {
 	font-size:1.6rem;
 	margin-bottom:17px;
 }
+
 h3.about {
 	width:80%;
 	margin:auto;

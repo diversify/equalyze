@@ -29,9 +29,6 @@
 			<div class="logo-container animated ">
 				<img src="/logo.png" alt="">
 			</div>
-			
-
-
 			<p class="analyze-desc">
 				How gender equal are your playlist? Analyze your playlists now!
 			</p>
@@ -39,35 +36,36 @@
 		</div>
 		<div class="bottom-container-fix">
 			<div class="album-cover-container">
-				<div class="album-cover-large" id="album-1">
-				</div><div class="album-cover-small" id="album-1">
-			</div><div class="album-cover-large" id="album-2">
-		</div><div class="album-cover-small" id="album-3">
-	</div><div class="album-cover-large" id="album-4">
-</div><div class="album-cover-small" id="album-5">
-</div><div class="album-cover-large" id="album-6">
-</div><div class="album-cover-small" id="album-7">
-</div><div class="album-cover-large" id="album-8">
-</div><div class="album-cover-small" id="album-9">
-</div><div class="album-cover-large" id="album-10">
-</div><div class="album-cover-small" id="album-11">
-</div>
-</div>
-</div>
-</div>
+				<div class="album-cover-large animated" id="album-1">
+				</div><div class="album-cover-small animated" id="album-1">
+				</div><div class="album-cover-large animated" id="album-2">
+				</div><div class="album-cover-small animated" id="album-3">
+				</div><div class="album-cover-large animated" id="album-4">
+				</div><div class="album-cover-small animated" id="album-5">
+				</div><div class="album-cover-large animated" id="album-6">
+				</div><div class="album-cover-small animated" id="album-7">
+				</div><div class="album-cover-large animated" id="album-8">
+				</div><div class="album-cover-small animated" id="album-9">
+				</div><div class="album-cover-large animated" id="album-10">
+				</div><div class="album-cover-small animated" id="album-11">
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
 
 <div class="results-container">
 	<div class="result-profile col-xs-9 col-centered">
-		<div class="result-chart">
+		<div class="result-chart animated">
 			<div id="canvas-holder">
 				<canvas id="chart-area" width="220" height="220" >
 
 				</canvas>
 			</div>
 		</div>
+
 
 		<h2 class="result-msg-title">Oh no!</h2>
 		<p class="result-msg">Your playlists are not very gender equal. Checkout these female artists to diversify your music</p>
@@ -88,8 +86,9 @@ $(document).ready(function (){
 		}, 500);
 	});
 });
+</script>
 
-</script></template>
+</template>
 
 
 
@@ -99,6 +98,7 @@ $(document).ready(function (){
 </template>
 
 <template name="login">
+
 	<h1>Log in with Spotify</h1>
 
 	<button id="login">Log in</button>
@@ -107,8 +107,8 @@ $(document).ready(function (){
 <template name="about">
 	<div class="col-xs-11 col-md-6 landing-content-container col-centered about">
 		<div class="logo-container animated ">
- 			<img src="/logo.png" alt="">
- 		</div>
+			<img src="/logo.png" alt="">
+		</div>
 		<h3 class="about">Why?</h3>
 		<p class="analyze-desc about">
 			Black on white: women are underrepresented in most areas in society. The music industry is not an exception. According to a research by the organization Jämställd Festival (Equal festival), 73% of the Swedish festival acts are of male gender. In Europe, the numbers are even more unequal: 91% of the artists are men.</p>
@@ -136,3 +136,10 @@ $(document).ready(function (){
 
 								</div>
 							</template>
+
+						<template name="login">
+							<div class="container-login col-xs-10">
+								<h1>Log in with Spotify</h1>
+								<button id="login" class="analyze-button">Log in</button>
+							</div>
+						</template>
