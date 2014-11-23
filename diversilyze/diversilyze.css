@@ -33,6 +33,21 @@ body,html {
 	-webkit-font-smoothing:antialiased;
 	height:100%;
 	font-family:'Gotham-Book', sans-serif;
+	color:#111;
+}
+
+a {
+	color:inherit!important;
+	text-decoration:underline!important;
+}
+a:hover {
+	color:#F13465 !important;
+}
+
+button {
+	border:none;
+	color:none;
+	background:none;
 }
 
 
@@ -94,12 +109,13 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about, .menu-item 
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	cursor: pointer;
-	-webkit-transition: background 1s ease-out; 
 	margin:0 auto;
 	width:85%;
 	max-width:400px;
 	margin-top:35px;
 	-webkit-animation-delay:0.5s;
+	-o-animation-delay:0.5s;
+	-moz-animation-delay:0.5s;
 }
 
 .album-cover-container {
@@ -166,9 +182,9 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about, .menu-item 
 	width:220px;
 	height:220px;
 	background-size:cover;
-	-webkit-animation-delay:0.7s;
-	-o-animation-delay:0.7s;
-	-moz-animation-delay:0.7s;
+	-webkit-animation-delay:0.8s;
+	-o-animation-delay:0.8s;
+	-moz-animation-delay:0.8s;
 }
 
 .result-msg-container {
@@ -286,11 +302,39 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about, .menu-item 
 	display: inline-block;
 }
 
+.album-cover-small {
+	-webkit-animation-delay:0.4s;
+	-o-animation-delay:0.4s;
+	-moz-animation-delay:0.4s;
+}
+
+
 
 /* Log in style */ 
 
-/* MENU */
 
+.login-container {
+	text-align: center;
+	padding:100px 0px;
+	color:#fff;
+}
+
+.login-desc {
+	text-align: left;
+	padding:0px 20px;
+	font-size:1.3em;
+}
+
+.login-bg {
+	width:100%;
+	height:100%;
+	background: #F7F7F7;
+	background: url("diverse-bg.png");
+	background-size: cover;
+}
+
+
+/* MENU */
 .menu-item {
 	color:inherit;
 	text-align:right;
@@ -299,6 +343,7 @@ h1, h2, h3, h4, h5, h6, .analyze-button, .recommend-title, h3.about, .menu-item 
 	position:absolute;
 	top:30px;
 	right:30px;
+	text-decoration:none!important;
 }
 .menu-item:hover {
 	text-decoration:none;
