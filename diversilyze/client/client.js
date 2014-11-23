@@ -25,6 +25,8 @@ var data = {
   show_dialog: true
 }
 
+var playlistNbr = 14;
+
 Router.onBeforeAction(function() {
   if(!AuthInformation.isAuthed()) {
     this.render('login')
@@ -81,6 +83,7 @@ Template.analyze.helpers({
     genres.forEach(function(genreObj){
       genresData.push(genreObj.genre);
     })
+
     relatedArtists.forEach(function(artist) {
       if(!stop) {
         artist.genres.forEach(function(genre) {
@@ -93,7 +96,7 @@ Template.analyze.helpers({
           console.log(n)
           n++;
           if(n<30) {
-            Spotify.getArtist(artist.id).then(function(artistObj) {
+            var promises = Spotify.getArtist(artist.id).then(function(artistObj) {
               UniqueRelatedArtists.insert({playlistID: playlistID, artist: artistObj})
               console.log('asd')
               artistData.push(artistObj)
@@ -103,17 +106,40 @@ Template.analyze.helpers({
           }
         }
         addIt = true;
-      }})
-    console.log(artistData)
-    //console.log("Playlist: " + playlistID)
-  //  console.log("RelatedArtistData: " + relatedArtists)
-//    console.log("Genres: " + genres);
-},
+      }
+    })
+  },
 
-relatedArtists: function() {
-  var playlistID =  Session.get('currentPlaylist');
-  return UniqueRelatedArtists.find({playlistID: playlistID});
-}
+  relatedArtists: function() {
+    var playlistID =  Session.get('currentPlaylist');
+    return UniqueRelatedArtists.find({playlistID: playlistID});
+  },
+
+  setAlbumCovers: function() {   
+    var userID = Session.get('currentUser').userID;
+    var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
+      return playlists.items[playlistNbr].id;
+    });
+
+    promise.then(function(playlistID) {
+      console.log(playlistID)
+      Session.set('currentPlaylist', playlistID);
+    });
+    var playlistID = Session.get('currentPlaylist');
+    var promiseTwo = Spotify.getPlaylistTracks(userID, playlistID).then(function(tracks) {
+      return tracks;
+    })
+
+    console.log(promiseTwo)
+    promiseTwo.then(function(tracks) {
+      for (var i = 0; i < playlistNbr; i++) {
+          var url = tracks.items[i].track.album.images[0].url
+          $('#album-'+i).css('background', "url("+url+")")
+          $('#album-'+i).css('background-size', "100%")
+          $('#album-'+i).css('background-repeat', "no-repeat")
+      };
+    })
+  }
 })
 
 Template.login.events({
@@ -147,8 +173,8 @@ Template.analyze.events({
   'click #analyze': function() {
     var userID = Session.get('currentUser').userID;
     var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
-      var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[13].id).then(function(tracks) {
-        var diversityReturn = Helpers.checkDiversity(tracks, playlists.items[13].id);
+      var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[playlistNbr].id).then(function(tracks) {
+        var diversityReturn = Helpers.checkDiversity(tracks, playlists.items[playlistNbr].id);
         return diversityReturn;
       })
       return returnTwo;
