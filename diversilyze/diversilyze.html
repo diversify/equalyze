@@ -42,7 +42,13 @@
 			</p>
 			<div id="analyze" class="analyze-button animated flipInX">let's analyze</div>
 		</div>
+		<div class="dropdown">
+			<select id="playlist-container" class="form-control">
+			{{playlists}}
+			</select>
+		</div>
 		<!--{{setAlbumCovers}}-->
+		<!--
 		<div class="bottom-container-fix">
 			<div class="album-cover-container">
 				<div class="album-cover-large animated" id="album-0">
@@ -60,7 +66,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	-->
+</div>
 
 
 
@@ -76,6 +83,10 @@
 		</div>
 
 		<div class="result-msg-container animated">
+			{{getGenderData}}
+			<h1 id="male-container"></h1>
+			<h1 id="female-container"></h1>
+			<h1 id="unknown-container"></h1>
 			<h2 class="result-msg-title">Oh no!</h2>
 			<p class="result-msg">Your playlists are not very diverse. Checkout these artists to diversify your music</p>
 		</div>
@@ -89,13 +100,13 @@
 </div>
 
 <script>
-$(document).ready(function (){
-	$(".analyze-button").click(function (){
-		$('html, body').delay(300).animate({
-			scrollTop: $(".results-container").offset().top
-		}, 700);
+	$(document).ready(function (){
+		$(".analyze-button").click(function (){
+			$('html, body').delay(300).animate({
+				scrollTop: $(".results-container").offset().top
+			}, 700);
+		});
 	});
-});
 </script>
 
 </template>
@@ -108,13 +119,13 @@ $(document).ready(function (){
 </template>
 
 <template name="login">
-<div class="login-bg">
-	 <div class="login-container col-xs-10 col-md-6 col-lg-4 col-centered">
-		<h2>Log in with Spotify</h2>
-		<p class="login-desc">You'll have to give us access to your playlists. Please sign into Spotify</p>
-		<button id="login" class="analyze-button">Continue</button>
-	 </div>
- </div>
+	<div class="login-bg">
+		<div class="login-container col-xs-10 col-md-6 col-lg-4 col-centered">
+			<h2>Log in with Spotify</h2>
+			<p class="login-desc">You'll have to give us access to your playlists. Please sign into Spotify</p>
+			<button id="login" class="analyze-button">Continue</button>
+		</div>
+	</div>
 </template>
 
 <template name="about">

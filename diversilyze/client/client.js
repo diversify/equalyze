@@ -23,12 +23,14 @@ var state = generateRandomString(16)
 var data = {
   response_type: 'token',
   client_id: '3c03b59c6cc2404aa818748e9250ed47',
-  redirect_uri: callback,
-  scope: 'user-read-private user-read-email playlist-read-private',
+  redirect_uri: callbackTest,
+  scope: 'user-read-private playlist-read-private',
   show_dialog: true
 }
 
 var playlistNbr = 13;
+var graphKey = 'e6168997c0e6b8db78bef46b04a9b794';
+var graph_artist_url = 'http://api.musicgraph.com/api/v2/artist/search?api_key='+graphKey;
 
 var currentUser;
 
@@ -39,7 +41,6 @@ Router.onBeforeAction(function() {
   }
   else {
     var token = Session.get('currentToken')
-    console.log("current token: "+token)
     Spotify.setAccessToken(token)
     var promise = Spotify.getMe().then(function(me) {
       return me;
@@ -102,10 +103,10 @@ Template.analyze.helpers({
 
     promiseTwo.then(function(tracks) {
       for (var i = 0; i < playlistNbr; i++) {
-          var url = tracks.items[i].track.album.images[0].url
-          $('#album-'+i).css('background', "url("+url+")")
-          $('#album-'+i).css('background-size', "100%")
-          $('#album-'+i).css('background-repeat', "no-repeat")
+        var url = tracks.items[i].track.album.images[0].url
+        $('#album-'+i).css('background', "url("+url+")")
+        $('#album-'+i).css('background-size', "100%")
+        $('#album-'+i).css('background-repeat', "no-repeat")
       };
     })
   },
@@ -127,58 +128,108 @@ Template.login.events({
 
 Template.analyze.helpers({
   playlists: function() {
-
     return Playlists.find();
   },
   diversity: function() {
     return Diversity.findOne();
-  }
+  },
 
+  playlists: function() {
+    if(Session.get('currentUser')){
+      var userID = Session.get('currentUser');
+      var playlistPromise = Spotify.getUserPlaylists(userID, {limit: 50}).then(function(playlists) {
+        return playlists;
+      })
+
+      playlistPromise.then(function(playlists) {
+        playlists.items.forEach(function(playlist) {
+          $('#playlist-container').append('<option data-owner="'+playlist.owner.id+'"" data-id="'+playlist.id+'">'+playlist.name+'</option>')
+        })
+      })  
+    }
+  }
   
 })
 
 Template.analyze.events({
-  'click #analyze': function() {
-    var userID = Session.get('currentUser');
-    var promise = Spotify.getUserPlaylists(userID).then(function(playlists) {
-      var returnTwo =  Spotify.getPlaylistTracks(userID, playlists.items[playlistNbr].id).then(function(tracks) {
-        var diversityReturn = Helpers.checkDiversity(tracks, playlists.items[playlistNbr].id);
-        return diversityReturn;
-      })
-      return returnTwo;
-    })
-      $(".result-chart").addClass("flipInX"); // Pop-in animation of results
-      $(".result-msg-container").addClass("fadeInDown");
-      $(".album-cover-small").addClass("fadeOutUp");
-      $(".album-cover-large").addClass("fadeOutUp");
-    promise.then(function(diversity) {
-      var promiseTwo = Spotify.getUser(userID).then(function(user) {
-        return user;
-      })
-      promiseTwo.then(function(spotifyUser) {
-        console.log("Doing chart")
-        $('.result-chart').css('background-image', 'url(' + spotifyUser.images[0].url + ')');
-        var pieData = [
-        {
-          value: Math.round(diversity*100),
-          segmentShowStroke : false,
-          segmentStrokeWidth : 0,
-          color:"#F2345A",
-          label: "Diversity"
-        },
-        {
-          value: Math.round((1-diversity)*100),
-          segmentShowStroke : false,
-          color:"transparent",
-          
+  'click #analyze': function(evt) {
+    var playlistID = $('#playlist-container').find(':selected').data('id');
+    var playlistOwner = $('#playlist-container').find(':selected').data('owner');
+    var playlistArtistsPromise = Spotify.getPlaylistTracks(playlistOwner, playlistID).then(function(tracks) {
+      var playlistArtists = [];
+      tracks.items.forEach(function(track) {
+        if(track.track.id != null) {
+          track.track.artists.forEach(function(artist) {
+            playlistArtists.push({"artistID":artist.id, "artistName": artist.name});
+          })
         }
-        ];
-
-        var ctx = document.getElementById("chart-area").getContext("2d");
-        var myPie = new Chart(ctx).Pie(pieData);
 
       })
-      
+      return playlistArtists;
+
     })
-  }
+
+    playlistArtistsPromise.then(function(artistList) {
+      var artistToCheck = [];
+      artistList.forEach(function(artist) {
+        artistToCheck.push(artist.artistName);
+      })
+      return artistToCheck;
+    })
+
+    playlistArtistsPromise.then(function(artistToCheck) {
+      var artistGender = [];
+      Meteor.call('getArtistData', artistToCheck, function(error, result) {
+        if(result == -1) {
+          console.log("Too long list")
+        }
+        else {
+          result.forEach(function(artistObject) {
+            if(artistObject.data.data.length > 0) {  
+              artistGender.push(artistObject.data.data[0].gender);
+            } else {
+              artistGender.push("Not specified")
+            }
+          })
+          var genderNbrs = Helpers.getNbrOfGenders(artistGender)
+          Session.set('genderNbrs', genderNbrs);
+          $('#male-container').text('Male: '+genderNbrs.male)
+          $('#female-container').text('Female: '+genderNbrs.female)
+          $('#unknown-container').text('Unknown: '+genderNbrs.unknown)
+           $(".result-chart").addClass("flipInX"); // Pop-in animation of results
+           $(".result-msg-container").addClass("fadeInDown");
+           $(".album-cover-small").addClass("fadeOutUp");
+           $(".album-cover-large").addClass("fadeOutUp");
+           var pieData = [
+           {
+            value: genderNbrs.male,
+            segmentShowStroke : false,
+            segmentStrokeWidth : 0,
+            color:"green",
+            label: "Male"
+          },
+          {
+            value: genderNbrs.female,
+            segmentShowStroke : false,
+            segmentStrokeWidth : 0,
+            color:"red",
+            label: "Female"
+
+          },
+          {
+            value: genderNbrs.unknown,
+            segmentShowStroke: false,
+            segmentStrokeWidth : 0,
+            color: "yellow",
+            label: "Unknown"
+          }
+          ];
+          var ctx = document.getElementById("chart-area").getContext("2d");
+          var myPie = new Chart(ctx).Pie(pieData);
+
+        }
+      })
+return artistGender;
+})
+}
 })

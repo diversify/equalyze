@@ -35,6 +35,22 @@ Helpers = {
       return diversity;
     })
 
+  },
+
+  getNbrOfGenders: function(genderData) {
+    var nbrOfMale = 0;
+    var nbrOfFemale = 0;
+    var nbrOfUnknown = 0;
+    genderData.forEach(function(genderObj) {
+      if(genderObj == "Male") {
+        nbrOfMale++;
+      } else if(genderObj == "Female") {
+        nbrOfFemale++;
+      } else {
+        nbrOfUnknown++;
+      }
+    })
+    return {"male": nbrOfMale, "female": nbrOfFemale, "unknown": nbrOfUnknown};    
   }
 }
 
