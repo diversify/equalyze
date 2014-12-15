@@ -23,7 +23,7 @@ var state = generateRandomString(16)
 var data = {
   response_type: 'token',
   client_id: '3c03b59c6cc2404aa818748e9250ed47',
-  redirect_uri: callbackTest,
+  redirect_uri: callback,
   scope: 'user-read-private playlist-read-private playlist-modify-private playlist-modify-public',
   show_dialog: true
 }
@@ -183,6 +183,7 @@ Template.analyze.events({
 
             Meteor.call('getGenderArtistList', artistToCheck, "female", function(error, relatedArtistResult) {
               relatedArtistResult.forEach(function(artist) {
+                if(artist.relatedArtist != "undefined") {
                 var relatedArtistPromise = Spotify.searchArtists(artist.relatedArtist, {limit: 1}).then(function(relatedArtist) {
                   return relatedArtist.artists.items[0].id
                 })
@@ -201,6 +202,7 @@ Template.analyze.events({
                     }
                   })
                 })
+              }
               })
 
             })
