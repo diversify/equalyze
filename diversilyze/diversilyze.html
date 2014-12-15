@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<meta charset="utf-8"> 
+	<link rel="icon" type="image/png" href="/logo.png">
 </head>
 
 <body>
@@ -40,13 +41,14 @@
 			<p class="analyze-desc">
 				How gender equal are your playlist? Analyze your playlists now!
 			</p>
-			<div id="analyze" class="analyze-button animated flipInX">let's analyze</div>
-		</div>
-		<div class="dropdown">
+			<div class="dropdown">
 			<select id="playlist-container" class="form-control">
 			{{playlists}}
 			</select>
 		</div>
+			<div id="analyze" class="analyze-button animated flipInX">let's analyze</div>
+		</div>
+		
 		<!--{{setAlbumCovers}}-->
 		<!--
 		<div class="bottom-container-fix">
@@ -87,15 +89,16 @@
 			<h1 id="male-container"></h1>
 			<h1 id="female-container"></h1>
 			<h1 id="unknown-container"></h1>
-			<h2 class="result-msg-title">Oh no!</h2>
-			<p class="result-msg">Your playlists are not very diverse. Checkout these artists to diversify your music</p>
+			<h2 class="result-msg-title"></h2>
+			<p class="result-msg"></p>
 		</div>
 	</div>
 	<div class="album-recommendation col-xs-10 col-centered">
-		<h4 class="recommend-title">Check these albums out</h4>
+		<h4 class="recommend-title"></h4>
 		<!--{{setRelatedAlbums}}-->
-		<a href="#"><div class="album-cover-recommend" id="recommend-1"></div></a>
-		<a href="#"><div class="album-cover-recommend" id="recommend-2"></div></a>
+		<ul id="recommendation-list">
+			
+		</ul>
 	</div>
 </div>
 

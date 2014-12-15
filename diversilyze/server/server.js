@@ -24,9 +24,10 @@ var keys = [
 
 Meteor.methods({
 	getArtistData: function (artistList) {
+		var savedArtists = Artists.find().fetch();
 		this.unblock();
 		var artistData = [];
-		if(artistList.length > keys*45) {
+		if(artistList.length > (keys*45)/2) {
 			console.log("Too long")
 			return -1;
 		}
@@ -36,16 +37,29 @@ Meteor.methods({
 		for (i = 0, j= artistList.length; i<j; i+=chunk) {
 			tempArray.push(artistList.slice(i, i+chunk));
 		};
+
 		var index = 0;
 		tempArray.forEach(function(artistArray) {
 			keys[index].timesUsed++;
 			artistArray.forEach(function(artist) {
-				artistData.push(Meteor.http.call('GET', 'http://api.musicgraph.com/api/v2/artist/search?api_key='+keys[index].key+'&name='+artist.artistName));
+				var result = _.find(savedArtists, function(e) { if(e.name == artist.artistName) { return e } })
+				if(!result) {
+					var artistResult = Meteor.http.call('GET', 'http://api.musicgraph.com/api/v2/artist/search?api_key='+keys[index].key+'&name='+artist.artistName.split(' ').join('+'))
+					var gender = "";
+					if (artistResult.data.data.length > 0) {
+						gender = artistResult.data.data[0].gender
+					} else {
+						gender = "Not specified"
+					}
+					artistData.push(gender);
+					Artists.insert({"name":artist.artistName, "gender": gender});
+				} else {
+					artistData.push(result.gender);
+				} 
 			})
 			index++;
-		})
-		
-		// Sort the array after how many times a key has been used.
+		})		
+		// Sort the key-array after how many times a key has been used.
 		keys.sort(function(a,b) {
 			var keyA = a.timesUsed;
 			var keyB = b.timesUsed;
@@ -54,7 +68,60 @@ Meteor.methods({
 			if(keyA > keyB) return 1;
 			return 0;
 		});
+		console.log(artistData)
 		return artistData;
+	},
+
+	getGenderArtistList: function(artistList, gender) {
+		var savedRelatedArtists = RelatedArtists.find().fetch();
+		this.unblock();
+		artistList = _.uniq(artistList);
+		var relatedArtistData = [];
+		if(artistList.length > (keys*45)/2) {
+			console.log("Too long")
+			return -1;
+		}
+		
+		var i, j, chunk = 45;
+		var tempArray = [];
+		for (i = 0, j= artistList.length; i<j; i+=chunk) {
+			tempArray.push(artistList.slice(i, i+chunk));
+		};
+
+		var index = 0;
+		tempArray.forEach(function(artistArray) {
+			keys[index].timesUsed++;
+			artistArray.forEach(function(artist) {
+				console.log("Artist", artist)
+				var result = _.find(savedRelatedArtists, function(e) { if(e.artistName == artist.artistName && e.relatedGender == gender) { return e } })
+				console.log("Result", result)
+				if(!result) {
+					console.log("No saved related artist")
+					var artistResult = Meteor.http.call('GET', 'http://api.musicgraph.com/api/v2/artist/search?api_key='+keys[0].key+'&similar_to='+artist.artistName.split(' ').join('+')+'&gender='+gender+'&limit=1')
+					if (artistResult.data.data.length > 0) {
+						resultRelated = artistResult.data.data[0];
+						
+						relatedArtistData.push(resultRelated);
+						RelatedArtists.insert({"artistName": artist.artistName, "relatedArtist": resultRelated.name, "relatedGender": gender})
+					}
+				} else {
+					console.log("Saved related artist")
+					relatedArtistData.push(result);
+				}
+				
+			})
+			index++;
+		})
+		// Sort the key-array after how many times a key has been used.
+		keys.sort(function(a,b) {
+			var keyA = a.timesUsed;
+			var keyB = b.timesUsed;
+
+			if(keyA < keyB) return -1;
+			if(keyA > keyB) return 1;
+			return 0;
+		});
+		return relatedArtistData;
 	}
 })
 

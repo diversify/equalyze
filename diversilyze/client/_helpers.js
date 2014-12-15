@@ -50,7 +50,9 @@ Helpers = {
         nbrOfUnknown++;
       }
     })
-    return {"male": nbrOfMale, "female": nbrOfFemale, "unknown": nbrOfUnknown};    
+    var genderNbrs = {"male": nbrOfMale, "female": nbrOfFemale, "unknown": nbrOfUnknown} 
+    Session.set('genderNbrs', genderNbrs);
+    return genderNbrs;    
   }
 }
 

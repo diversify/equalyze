@@ -24,7 +24,7 @@ var data = {
   response_type: 'token',
   client_id: '3c03b59c6cc2404aa818748e9250ed47',
   redirect_uri: callbackTest,
-  scope: 'user-read-private playlist-read-private',
+  scope: 'user-read-private playlist-read-private playlist-modify-private playlist-modify-public',
   show_dialog: true
 }
 
@@ -63,7 +63,6 @@ Router.route('/about',function(){
 })
 
 Router.route('/callback', function() {
-  console.log('callback');
   var hash = this.params.hash;
   if(hash) {
     var data = Helpers.queryToObject(hash)
@@ -159,9 +158,7 @@ Template.analyze.events({
       var playlistArtists = [];
       tracks.items.forEach(function(track) {
         if(track.track.id != null) {
-          track.track.artists.forEach(function(artist) {
-            playlistArtists.push({"artistID":artist.id, "artistName": artist.name});
-          })
+          playlistArtists.push({"artistID":track.track.artists[0].id, "artistName": track.track.artists[0].name});
         }
 
       })
@@ -169,59 +166,102 @@ Template.analyze.events({
 
     })
 
-    playlistArtistsPromise.then(function(artistList) {
-      var artistToCheck = [];
-      artistList.forEach(function(artist) {
-        artistToCheck.push(artist.artistName);
-      })
-      return artistToCheck;
-    })
-
     playlistArtistsPromise.then(function(artistToCheck) {
       var artistGender = [];
-      Meteor.call('getArtistData', artistToCheck, function(error, result) {
-        if(result == -1) {
+      var relatedSongUris = [];
+      console.log(artistToCheck)
+      Meteor.call('getArtistData', artistToCheck, function(error, genderResult) {
+        if(genderResult == -1) {
           console.log("Too long list")
-        }
-        else {
-          result.forEach(function(artistObject) {
-            if(artistObject.data.data.length > 0) {  
-              artistGender.push(artistObject.data.data[0].gender);
-            } else {
-              artistGender.push("Not specified")
-            }
-          })
-          var genderNbrs = Helpers.getNbrOfGenders(artistGender)
-          Session.set('genderNbrs', genderNbrs);
-          $('#male-container').text('Male: '+genderNbrs.male)
-          $('#female-container').text('Female: '+genderNbrs.female)
-          $('#unknown-container').text('Unknown: '+genderNbrs.unknown)
+        } else {
+          var genderNbrs = Helpers.getNbrOfGenders(genderResult);
+          if(genderNbrs.male > genderNbrs.female) {
+            Session.set('genderMinority', 'female')
+            $('.result-msg-title').text("Oh no!")
+            $('.result-msg').text("Your playlist is not very diverse... Check out these artists to make it more diverse!")
+            $('.recommend-title').text("Recommended artists")
+
+            Meteor.call('getGenderArtistList', artistToCheck, "female", function(error, relatedArtistResult) {
+              relatedArtistResult.forEach(function(artist) {
+                var relatedArtistPromise = Spotify.searchArtists(artist.relatedArtist, {limit: 1}).then(function(relatedArtist) {
+                  return relatedArtist.artists.items[0].id
+                })
+                relatedArtistPromise.then(function(artistID) {
+                  var artistTopTrackPromise = Spotify.getArtistTopTracks(artistID, "SE", {limit: 1}).then(function(topTracks) {
+                    return topTracks.tracks[0];
+                  })
+                  artistTopTrackPromise.then(function(track) {
+                    relatedSongUris.push(track.uri);
+                    if(relatedSongUris.length == relatedArtistResult.length) {
+                      $('#recommendation-list').empty();
+                      relatedSongUris = _.uniq(relatedSongUris)
+                      relatedSongUris.forEach(function(uri) {
+                        $('#recommendation-list').append('<li><iframe src="https://embed.spotify.com/?uri='+uri+'" width="300" height="80" frameborder="0" allowtransparency="true"></iframe><input class="add-song" type="button" data-trackUri="'+uri+'" value="Add" /></li>')
+                      })
+                    }
+                  })
+                })
+              })
+
+            })
+
+          } else if(genderNbrs.male < genderNbrs.female) {
+            Session.set('genderMinority', 'male')
+            $('.result-msg-title').text("Oh no!")
+            $('.result-msg').text("Your playlist is not very diverse... Check out these artists to make it more diverse!")
+            $('.recommend-title').text("Recommended artists")
+            Meteor.call('getGenderArtistList', artistToCheck, "male", function(error, relatedArtistResult) {
+              relatedArtistResult.forEach(function(artist) {
+                var relatedArtistPromise = Spotify.searchArtists(artist.relatedArtist, {limit: 1}).then(function(relatedArtist) {
+                  return relatedArtist.artists.items[0].id
+                })
+                relatedArtistPromise.then(function(artistID) {
+                  var artistTopTrackPromise = Spotify.getArtistTopTracks(artistID, "SE", {limit: 1}).then(function(topTracks) {
+                    return topTracks.tracks[0];
+                  })
+                  artistTopTrackPromise.then(function(track) {
+                    relatedSongUris.push(track.uri);
+                    if(relatedSongUris.length == relatedArtistResult.length) {
+                      $('#recommendation-list').empty();
+                      relatedSongUris = _.uniq(relatedSongUris)
+                      relatedSongUris.forEach(function(uri) {
+                        $('#recommendation-list').append('<li><iframe src="https://embed.spotify.com/?uri='+uri+'" width="300" height="80" frameborder="0" allowtransparency="true"></iframe><input class="add-song" type="button" data-trackUri="'+uri+'" value="Add" /></li>')
+                      })
+                    }
+                  })
+                })
+              })
+
+            })
+          } else {
+            $('.result-msg-title').text("Nice!")
+            $('.result-msg').text("You have a perfectly gender diverse playlist!")
+            $('.recommend-title').empty()
+            $('#recommendation-list').empty()
+          }
+          
+          $('#male-container').text('Male: '+Session.get('genderNbrs').male)
+          $('#female-container').text('Female: '+Session.get('genderNbrs').female)
+          $('#unknown-container').text('Unknown: '+Session.get('genderNbrs').unknown)
            $(".result-chart").addClass("flipInX"); // Pop-in animation of results
            $(".result-msg-container").addClass("fadeInDown");
            $(".album-cover-small").addClass("fadeOutUp");
            $(".album-cover-large").addClass("fadeOutUp");
            var pieData = [
            {
-            value: genderNbrs.male,
+            value: Session.get('genderNbrs').male,
             segmentShowStroke : false,
             segmentStrokeWidth : 0,
             color:"green",
             label: "Male"
           },
           {
-            value: genderNbrs.female,
+            value: Session.get('genderNbrs').female,
             segmentShowStroke : false,
             segmentStrokeWidth : 0,
             color:"red",
             label: "Female"
 
-          },
-          {
-            value: genderNbrs.unknown,
-            segmentShowStroke: false,
-            segmentStrokeWidth : 0,
-            color: "yellow",
-            label: "Unknown"
           }
           ];
           var ctx = document.getElementById("chart-area").getContext("2d");
@@ -229,7 +269,27 @@ Template.analyze.events({
 
         }
       })
-return artistGender;
-})
-}
+      return artistGender;
+    })
+  },
+
+  'click .add-song': function(evt, err) {
+    var genderMinority = Session.get('genderMinority')
+    var male = Session.get('genderNbrs').male
+    var female = Session.get('genderNbrs').female
+    var unknown = Session.get('genderNbrs').unknown
+    if(genderMinority == "male") {
+      Session.set('genderNbrs', {"male": male+1, "female": female, "unknown": unknown})
+    } else {
+      Session.set('genderNbrs', {"male": male, "female": female+1, "unknown": unknown})
+    }
+    var trackUri = $(evt.target).data('trackUri');
+    var userID = Session.get('currentUser');
+    var playlistID = $('#playlist-container').find(':selected').data('id');
+    $(evt.target).attr('disabled', true)
+    $(evt.target).val('Added!')
+    var addPromise = Spotify.addTracksToPlaylist(userID, playlistID, trackUri).then(function(result) {
+      console.log(result)   
+    })
+  }
 })
