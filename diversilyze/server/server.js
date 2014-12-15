@@ -100,9 +100,9 @@ Meteor.methods({
 					var artistResult = Meteor.http.call('GET', 'http://api.musicgraph.com/api/v2/artist/search?api_key='+keys[0].key+'&similar_to='+artist.artistName.split(' ').join('+')+'&gender='+gender+'&limit=1')
 					if (artistResult.data.data.length > 0) {
 						resultRelated = artistResult.data.data[0];
-						
-						relatedArtistData.push(resultRelated);
-						RelatedArtists.insert({"artistName": artist.artistName, "relatedArtist": resultRelated.name, "relatedGender": gender})
+						var newResult = {"artistName": artist.artistName, "relatedArtist": resultRelated.name, "relatedGender": gender}
+						relatedArtistData.push(newResult);
+						RelatedArtists.insert(newResult);
 					}
 				} else {
 					console.log("Saved related artist")
