@@ -1,4 +1,4 @@
-diversilyze
+Equalyze
 ===========
 
-A web app for analyzing and ranking how diversified you profile and playlists are
+A web app for analyzing how diversified your playlists are
